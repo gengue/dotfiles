@@ -1,0 +1,277 @@
+window:
+  dimensions:
+    columns: 100 
+    lines: 30 
+
+  # position:
+  #   x: 50
+  #   y: 50
+
+  #padding:
+    #x: 10
+    #y: 10
+
+  dynamic_title: false
+  dynamic_padding: true
+  startup_mode: Windowed
+  title: Alacritty
+  decorations: full
+
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+font:
+  #normal:
+    #family: PragmataPro liga
+    #style: Regular
+
+  #bold:
+    #family: PragmataPro liga
+    #style: Bold
+
+  #italic:
+    #family: PragmataPro liga
+    #style: Italic
+
+  #bold_italic:
+    #family: PragmataPro liga
+    #style: Bold Italic
+
+  size: 11
+  # size: 8
+
+  offset:
+    x: 0
+    y: -1
+
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: false
+
+schemes:
+
+  colors: &fuel
+    primary:
+      # background: '#282828'
+      background: '#484461'
+      foreground: '#EEEBFF'
+
+    cursor:
+      text: '#000000'
+      cursor: '#EEEBFF'
+
+    # Normal colors
+    normal:
+      black:   '#282828'
+      red:     '#FEA2A2'
+      green:   '#BEE6AE'
+      yellow:  '#E4D3AA'
+      blue:    '#B0AEE6'
+      magenta: '#DAAEE6'
+      cyan:    '#AFC9E7'
+      white:   '#EEEBFF'
+
+    # Bright colors
+    bright:
+      black:   '#282828'
+      red:     '#FEA2A2'
+      green:   '#BEE6AE'
+      yellow:  '#E4D3AA'
+      blue:    '#B0AEE6'
+      magenta: '#DAAEE6'
+      cyan:    '#AFC9E7'
+      white:   '#EEEBFF'
+
+  colors: &palenight
+    primary:
+      # background: '#282828'
+      background: '#292D3E'
+      foreground: '#D9D9E5'
+
+    cursor:
+      text: '#292D3E'
+      cursor: '#D9D9E5'
+
+    # Normal colors
+    normal:
+      black:   '#292D3E'
+      red:     '#FF5370'
+      green:   '#C3E88D'
+      yellow:  '#FFCB6B'
+      blue:    '#82B1FF'
+      magenta: '#C792EA'
+      cyan:    '#89DDFF'
+      white:   '#D9D9E5'
+
+    # Bright colors
+    bright:
+      black:   '#292D3E'
+      red:     '#FF5370'
+      green:   '#C3E88D'
+      yellow:  '#FFCB6B'
+      blue:    '#82B1FF'
+      magenta: '#C792EA'
+      cyan:    '#89DDFF'
+      white:   '#D9D9E5'
+ 
+  colors: &hue
+    primary:
+      # background: '#282828'
+      background: '#291E4E'
+      foreground: '#ffffff'
+
+    cursor:
+      text: '#000000'
+      cursor: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#291E4E'
+      red:     '#FB749F'
+      green:   '#89e3a3'
+      yellow:  '#fbdd74'
+      blue:    '#8E96FD'
+      magenta: '#BF86FF'
+      cyan:    '#78B4CA'
+      white:   '#ffffff'
+
+    # Bright colors
+    bright:
+      black:   '#291E4E'
+      red:     '#FB749F'
+      green:   '#89e3a3'
+      yellow:  '#fbdd74'
+      blue:    '#8E96FD'
+      magenta: '#BF86FF'
+      cyan:    '#78B4CA'
+      white:   '#ffffff'
+
+  colors: &ayu
+    primary:
+      # background: '#282828'
+      background: '#100E0E'
+      foreground: '#F8EAB6'
+
+    cursor:
+      text: '#151515'
+      cursor: '#F8EAB6'
+
+    # Normal colors
+    normal:
+      black:    '#100E0E'
+      red:     '#FF5341'
+      green:   '#B6D031'
+      yellow:  '#F0BC2C'
+      blue:    '#FF9B12'
+      magenta: '#E97340'
+      cyan:    '#F65F1C'
+      white:   '#EFDFA8'
+
+    # Bright colors
+    bright:
+      black:    '#100E0E'
+      red:     '#FF5341'
+      green:   '#B6D031'
+      yellow:  '#F0BC2C'
+      blue:    '#FF9B12'
+      magenta: '#E97340'
+      cyan:    '#F65F1C'
+      white:   '#EFDFA8'
+
+  colors: &om-omar
+    primary:
+      # background: '#282828'
+      background: '#2F343F'
+      foreground: '#E1E1E1'
+
+    cursor:
+      text: '#2F343F'
+      cursor: '#E1E1E1'
+
+    # Normal colors
+    normal:
+      black:    '#2F343F'
+      red:     '#DE8990'
+      green:   '#94DAA9'
+      yellow:  '#DEE7AA'
+      blue:    '#9CDBDF'
+      magenta: '#CCA8C9'
+      cyan:    '#9AD4C8'
+      white:   '#E1E1E1'
+
+    # Bright colors
+    bright:
+      black:    '#2F343F'
+      red:     '#DE8990'
+      green:   '#94DAA9'
+      yellow:  '#DEE7AA'
+      blue:    '#9CDBDF'
+      magenta: '#CCA8C9'
+      cyan:    '#9AD4C8'
+      white:   '#E1E1E1'
+
+  colors: &crayon
+    primary:
+      # background: '#282828'
+      background: '#2A2C3A'
+      foreground: '#EEEEEE'
+
+    cursor:
+      text: '#2A2C3A'
+      cursor: '#EEEEEE
+
+    # Normal colors
+    normal:
+      black:    '#2A2C3A'
+      red:     '#fd6b85'
+      green:   '#b2e07d'
+      yellow:  '#fed270'
+      blue:    '#67D4F2'
+      magenta: '#FF8167'
+      cyan:    '#63E0BE'
+      white:   '#B1A6EE'
+
+    # Bright colors
+    bright:
+      black:   '#2A2C3A'
+      red:     '#fd6b85'
+      green:   '#b2e07d'
+      yellow:  '#fed270'
+      blue:    '#67D4F2'
+      magenta: '#FF8167'
+      cyan:    '#63E0BE'
+      white:   '#B1A6EE'
+  
+colors: *crayon
+
+background_opacity: 1.0
+
+cursor:
+  style: Beam
+  vi_mode_style: None
+  unfocused_hollow: true
+  thickness: 0.15
+
+live_config_reload: true
+
+# shell:
+#   program: /bin/bash
+#   args:
+#     - --login
+
+working_directory: None
+alt_send_esc: true
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+  hide_when_typing: false
+
+  url:
+    modifiers: None
+'
