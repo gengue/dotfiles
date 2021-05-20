@@ -1,209 +1,493 @@
-" --------------------------------------------------------------------------- 
-" ~~ INIT ~~
-" ---------------------------------------------------------------------------
-set nocompatible   " Disable vi-compatibility
-set exrc " enable vimrc
-let $PATH = '/usr/local/bin:'.$PATH
+set path+=**
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-execute pathogen#infect()
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
+"let g:python_host_prog  = '/usr/bin/python'
+"let g:python3_host_prog = '/usr/local/bin/python3.8'
 
-" --------------------------------------------------------------------------- 
-" ~~ GENERAL ~~
-" ---------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
+"
+" Plugins list 
+"
+" -----------------------------------------------------------------------------
+if has('nvim')
+    call plug#begin('~/.config/nvim/plugged')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 
-set history=1000                " Enable history
-set clipboard=unnamed
-set autoindent
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set autoindent
-set smartindent
-set expandtab
-set number 
-"set backspace=2
-set backspace=indent,eol,start
-set ruler
-set showcmd
-set ignorecase
-set textwidth=80
-set colorcolumn=+1  
-set hlsearch
-set hidden                       " Enable hidden buffers
-"set cursorline                  " Highlight current line
-set mouse=a
-set mousehide
-set mousemodel=popup
-set ttyfast
-"let g:pymode = 0
+" Code autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" File explorer
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
-" (Hopefully) removes the delay when hitting esc in insert mode
-"set noesckeys
-"set ttimeout
-"set ttimeoutlen=1
-set esckeys
-set timeoutlen=1000 
-set ttimeoutlen=0
-set autochdir
-set secure
+" Utility
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'dyng/ctrlsf.vim'
+Plug 'tpope/vim-fugitive' " Git util commands
+Plug 'scrooloose/nerdcommenter'
 
-set synmaxcol=200  
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'othree/html5.vim'
+Plug 'honza/vim-snippets'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}
+Plug 'mattn/emmet-vim' " html/jsx tags generator
 
-" --------------------------------------------------------------------------- 
-" ~~ MAPPINGS ~~
-" ---------------------------------------------------------------------------
+" Multiple Cursors like sublime text
+Plug 'terryma/vim-multiple-cursors'
 
+" Javascript support
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+
+" TypeScript support 
+Plug 'HerringtonDarkholme/yats.vim' 
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
+" Golang support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Svelte support
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+
+" Dart / flutter support
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+
+" Graphql support
+Plug 'jparise/vim-graphql'
+
+" JSX Support
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Riot support
+Plug 'ryym/vim-riot'
+
+" Styled components support
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+" PHP Support
+"Plug 'phpvim/phpcd.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'stephpy/vim-php-cs-fixer'
+
+" Godot support
+Plug 'calviken/vim-gdscript3'
+
+
+" Markdown support
+Plug 'tpope/vim-markdown'
+
+" Style & themes
+Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine' " Display vertical lines
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/AnsiEsc.vim'
+Plug 'morhetz/gruvbox'
+Plug 'fcpg/vim-fahrenheit'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'romainl/Apprentice'
+Plug 'atelierbram/Base2Tone-vim'
+
+" Initialize plugin system
+call plug#end()
+
+" -----------------------------------------------------------------------------
+"
+" Global Vim configuration 
+"
+" -----------------------------------------------------------------------------
+syntax enable
 let mapleader = ","
+set encoding=UTF-8
+"set backupcopy=yes
+" Indentation
+filetype plugin indent on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set showcmd 
+set wildmenu
+if has('nvim')
+    set wildoptions=pum
+endif
+set wildignore+=**/node_modules/**
+set ls=2 " Always show status line
+set wildmode=longest,list,full
+set showtabline=2
+"set colorcolumn=80
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 
-nnoremap ,<space> <CR>:nohlsearch<CR>
-" To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
-nmap <leader>T :enew<cr>
-" Move to the next buffer
-nmap <leader>l :bn<CR>
-" Move to the previous buffer
-nmap <leader>h :bp<CR>
+if has('nvim')
+    set pumblend=10 " popup transparency (only neovim)
+endif
+
+
+" JS specifics
+autocmd filetype javascript set sw=2 ts=2 expandtab
+autocmd filetype dart set sw=2 ts=2 expandtab
+" Golang / Python specifics
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype php setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+
+" set 7 lines to the cursor = when moving vertically using j/k
+set so=7
+set ruler
+
+" Enable Elite mode, No ARRRROWWS!!!!
+let g:elite_mode=1
+
+" Enable highlighting of the current line
+"set cursorline
+
+" Theme and Styling
+set t_Co=256
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+if has('nvim')
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
+
+
+set background=dark
+let base16colorspace=256  " Access colors present in 256 colorspace
+
+"colorscheme flattened_dark
+"colorscheme base16-black-metal 
+"colorscheme Base2Tone_DrawbridgeDark
+"colorscheme iceberg 
+colorscheme grb256 
+" only for grb256:
+highlight clear SignColumn
+"colorscheme Base2Tone_EveningDark
+"colorscheme nord
+"colorscheme apprentice 
+"colorscheme base16-nord
+"colorscheme base16-dracula
+"colorscheme base16-tomorrow-night
+"colorscheme OceanicNext
+"colorscheme lucius 
+"colorscheme jellybeans 
+"colorscheme smyck 
+"colorscheme dracula 
+
+" Don't outdent hashes
+inoremap # #
+
+" Line numbers
+set number
+
+set hidden " switch buffers without saving to a currently modified file
+
+" some languages servers have issues with backup files 
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
+
+" Close all the buffers
+map <leader>ba :bufdo bd<cr>
+
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>bq :bp <BAR> bd #<CR>
-" javascript docs
-nmap <silent> <C-l> <Plug>(jsdoc)
 
-" Descactiva las flechitas
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+map <leader>l :bnext<cr>
+map <leader>h :bprevious<cr>
 
-" Nerd Tree
-nmap <C-b> :NERDTreeToggle<cr>
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
-" --------------------------------------------------------------------------- 
-" ~~ PLUGINS CONF ~~
-" ---------------------------------------------------------------------------
+set tw=0
+set wm=0
+set linebreak
+set whichwrap+=>,l<,h
 
-" javascript docs
-let g:jsdoc_allow_input_prompt = 1
-let g:jsdoc_input_description = 1
-let g:jsdoc_underscore_private = 1
+set lazyredraw
+set showmatch
+
+set backspace=indent,eol,start
+
+" displays tabs with :set list & displays when a line runs off-screen
+set listchars=tab:>.,trail:.,precedes:<,extends:>
+set list
+
+""" Searching and Patterns
+set ignorecase              " Default to using case insensitive searches,
+set smartcase               " unless uppercase letters are used in the regex.
+set smarttab                " Handle tabs more intelligently
+set hlsearch                " Highlight searches by default.
+set incsearch               " Incrementally search while typing a /regex
+
+" clear selection
+nnoremap ,<space> <CR>:nohlsearch<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Turn persistent undo on 
+"    means that you can undo even when you close a buffer/VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
+
+command! MakeTags !ctags -R .
+
+" copy from system clipboard
+set clipboard^=unnamed,unnamedplus
+
+" -----------------------------------------------------------------------------
+"
+" Plugins configuration
+"
+" -----------------------------------------------------------------------------
+
+" CoC  - autocomplete
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-json', 
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+" Better display for messages 
+set cmdheight=2 
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+set tags=./tags;/
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+"nmap <F2> <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
-let g:jsx_ext_required=0                     " jsx highlighting in .js files
+" Generate ctags for php
+au BufWritePost *.php :silent !test -f .git/hooks/ctags && .git/hooks/ctags
+" PSR php fixer
+let g:php_cs_fixer_rules = "@PSR2" 
 
-" UltiSnips
+"  UltiSnips
 let g:UltiSnipsExpandTrigger       = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
 let g:UltiSnipsListSnippets        = "<c-k>" " List possible snippets based on current file
- 
-let NERDTreeIgnore = ['\.pyc$'] 
 
-let g:syntastic_html_tidy_ignore_errors=[
-            \"<ion-", "discarding unexpected </ion-", 
-            \" proprietary attribute \"ng-" 
-            \]
+" File explorer
+" NERDTree Ctrl+n
+map <C-b> :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline = 0
 
-set wildignore+=*/vendor/**
-set wildignore+=*/public/forum/**
-set wildignore=Ui_*,*.git,*.pyc
-set omnifunc=syntaxcomplete#Complete
+" go-vim plugin specific commands
+" Also run `goimports` on your current file on every save
+" Might be be slow on large codebases, if so, just comment it out
+let g:go_fmt_command = "goimports"
+"let g:go_highlight_diagnostic_errors = 0
+"let g:go_highlight_diagnostic_warnings = 0
 
-" --------------------------------------------------------------------------- 
-" ~~ AUTOCOMMANDS ~~
-" ---------------------------------------------------------------------------
+" Status line types/signatures.
+let g:go_auto_type_info = 1
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"Javascript Docs
+nmap <silent> <C-l> <Plug>(jsdoc)
+let g:javascript_plugin_jsdoc = 1
 
-autocmd FileType make setlocal noexpandtab
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype vue setlocal ts=2 sts=2 sw=2
+" Ctrlp ignore
+let g:ctrlp_custom_ignore = 'node_modules\|git'
 
-"autoremove trailing spaces
-autocmd BufWritePre *.php :%s/\s\+$//e
-autocmd BufWritePre *.py :%s/\s\+$//e
+" GitGutter
+let g:gitgutter_enabled=0
+nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
-" --------------------------------------------------------------------------- 
-" ~~ APPEARENCE ~~
-" ---------------------------------------------------------------------------
+" emmet
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
-" Disable visual bell
-set noerrorbells
-set novisualbell
-
-" for my zsh terminal <3
-if has('gui_running')
-    colorscheme OceanicNext
-endif
-"colorscheme jellybeans
-"colorscheme spacegray
-"colorscheme distinguished 
-"colorscheme solarized 
-"colorscheme darth
-"colorscheme smyck 
-"colorscheme lucius 
-"colorscheme onedark 
-"colorscheme smyck 
-"colorscheme atom-dark
-"colorscheme wombat 
-"colorscheme twilight 
-
-set title
-set background=dark
-set encoding=utf-8
-set term=screen-256color
-set term=xterm
-set t_Co=256
-set laststatus=2   " Always show the statusline
-
-"hi ColorColumn ctermbg=8
-hi ColorColumn ctermbg=237
-
-" for vim 8
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" Mouse
-set guioptions-=r 
-set guioptions-=L
-
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
-
-" Making cursor a bar in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-" Ariline conf
-"set guifont=Source\ Code\ Pro\ for\ Powerline:h14 "make sure to escape the spaces in the name properly
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12 "make sure to escape the spaces in the name properly
+" Airline fonts
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
-let g:airline_symbols = {} 
-let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='Base2Tone_EveningDark'
 
-"set nofoldenable    " disable folding
+" Search for selected text. press // after select
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-" --------------------------------------------------------------------------- 
-" ~~ FUNCTIONS ~~
-" ---------------------------------------------------------------------------
-func! WordProcessorMode()
- setlocal textwidth=80
- setlocal smartindent
- "setlocal spell spelllang=en_us
- setlocal spell spelllang=es
- setlocal noexpandtab
-endfu
+" CtrlSF Search by text
+nmap <C-F>f <Plug>CtrlSFPrompt
+vmap <C-F>f <Plug>CtrlSFVwordPath
+vmap <C-F>F <Plug>CtrlSFVwordExec
+nnoremap <C-F>t :CtrlSFToggle<CR>
+let g:ctrlsf_auto_focus = {
+    \ "at": "done",
+    \ "duration_less_than": 1000
+    \ }
 
-com! WP call WordProcessorMode()
+let g:ctrlsf_ignore_dir = ["*.pyc", "*.pyo", ".next/", "_coverage/", "_build/", "build/", "_reports/", "_test-results/"]
 
+
+"highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#444444
+"highlight ColorColumn ctermbg=235 guibg=#101010
+
+" if you want background transparency terminal
+"hi Normal guibg=NONE ctermbg=NONE
+"highlight clear LineNr
+"highlight clear SignColumn
+"highlight clear CursorLine
+"highlight clear CursorLineNR
+"highlight LineNr guifg=gray39
+"set fillchars+=vert:│
+"hi VertSplit ctermbg=NONE guibg=NONE
+"hi Cursor       guifg=black     ctermfg=0   guibg=grey46 ctermbg=243
