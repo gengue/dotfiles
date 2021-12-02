@@ -26,3 +26,18 @@ ln -s .dotfiles/zshrc .zshrc
 ln -s .dotfiles/gitignore .gitignore
 ln -s .dotfiles/vim .vim
 ```
+
+### Dependencies MacOS
+
+```
+brew install neovim gh lsd the_silver_searcher ack
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code-nerd-font
+```
+
+Inside vim:
+
+```
+:CocInstall
+:CocInstall <plugin1> <plugin2> ... 
+```

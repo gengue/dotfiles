@@ -1,0 +1,6 @@
+alias v=nvim
+alias vim=nvim
+alias dk="sudo docker"
+alias dkc="sudo docker-compose"
+alias zshconfig="nvim ~/.zshrc"
+alias vimconfig="nvim ~/.vimrc"
