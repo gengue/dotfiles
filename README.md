@@ -32,6 +32,7 @@ ln -s .dotfiles/vim .vim
 ```
 brew install neovim gh lsd the_silver_searcher ack
 brew tap homebrew/cask-fonts
+brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-fira-code-nerd-font
 ```
 
