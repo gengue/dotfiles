@@ -2,8 +2,8 @@ set path+=**
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-"let g:python_host_prog  = '/usr/bin/python'
-"let g:python3_host_prog = '/usr/local/bin/python3.8'
+let g:python_host_prog  = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " -----------------------------------------------------------------------------
 "
@@ -15,6 +15,9 @@ if has('nvim')
 else
     call plug#begin('~/.vim/plugged')
 endif
+
+" Copilot
+Plug 'github/copilot.vim'
 
 " Code autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -31,7 +34,6 @@ Plug 'scrooloose/nerdcommenter'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'othree/html5.vim'
-Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'heavenshell/vim-jsdoc', { 
   \ 'for': ['javascript', 'javascript.jsx','typescript'], 
@@ -52,14 +54,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
 " Golang support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Svelte support
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
+"Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Dart / flutter support
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
+"Plug 'dart-lang/dart-vim-plugin'
+"Plug 'thosakwe/vim-flutter'
 
 " Graphql support
 Plug 'jparise/vim-graphql'
@@ -67,20 +69,16 @@ Plug 'jparise/vim-graphql'
 " JSX Support
 Plug 'maxmellon/vim-jsx-pretty'
 
-" Riot support
-Plug 'ryym/vim-riot'
-
 " Styled components support
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " PHP Support
 "Plug 'phpvim/phpcd.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'stephpy/vim-php-cs-fixer'
+"Plug 'StanAngeloff/php.vim'
+"Plug 'stephpy/vim-php-cs-fixer'
 
 " Godot support
-Plug 'calviken/vim-gdscript3'
-
+"Plug 'calviken/vim-gdscript3'
 
 " Markdown support
 Plug 'tpope/vim-markdown'
@@ -93,9 +91,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/AnsiEsc.vim'
-Plug 'morhetz/gruvbox'
-Plug 'fcpg/vim-fahrenheit'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'romainl/Apprentice'
 Plug 'atelierbram/Base2Tone-vim'
 
@@ -127,10 +124,9 @@ set ls=2 " Always show status line
 set wildmode=longest,list,full
 set showtabline=2
 "set colorcolumn=80
-set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 if has('nvim')
-    set pumblend=10 " popup transparency (only neovim)
+  set pumblend=10 " popup transparency (only neovim)
 endif
 
 
@@ -163,28 +159,25 @@ if has('nvim')
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 endif
 
-
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
 
-"colorscheme flattened_dark
+"colorscheme base16-dracula
+colorscheme iceberg
+"colorscheme dracula 
 "colorscheme base16-black-metal 
 "colorscheme Base2Tone_DrawbridgeDark
-"colorscheme iceberg 
-colorscheme grb256 
-" only for grb256:
-highlight clear SignColumn
 "colorscheme Base2Tone_EveningDark
 "colorscheme nord
-"colorscheme apprentice 
 "colorscheme base16-nord
-"colorscheme base16-dracula
 "colorscheme base16-tomorrow-night
 "colorscheme OceanicNext
 "colorscheme lucius 
 "colorscheme jellybeans 
 "colorscheme smyck 
-"colorscheme dracula 
+"colorscheme grb256 
+" only for grb256:
+"highlight clear SignColumn
 
 " Don't outdent hashes
 inoremap # #
@@ -263,6 +256,7 @@ command! MakeTags !ctags -R .
 
 " copy from system clipboard
 set clipboard^=unnamed,unnamedplus
+"set clipboard+=unnamedplus
 
 " -----------------------------------------------------------------------------
 "
@@ -272,13 +266,26 @@ set clipboard^=unnamed,unnamedplus
 
 " CoC  - autocomplete
 
-" coc config
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" Better display for messages 
+set cmdheight=2 
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+
+" coc extensions 
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-json', 
-  \ ]
+      \ 'coc-css',
+      \ 'coc-snippets',
+      \ 'coc-pairs',
+      \ 'coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-json', 
+      \ 'coc-yaml',
+      \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -287,19 +294,6 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
-
-" Better display for messages 
-set cmdheight=2 
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-set tags=./tags;/
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -314,14 +308,12 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" To make <cr> select the first completion item and confirm the completion when no item has been selected
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+if exists('*complete_info')
+  inoremap <silent><expr> <cr> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -333,8 +325,17 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Remap keys for snippets.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Copilot trigger remap to Ctrl + J
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -349,11 +350,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-"nmap <F2> <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -391,6 +387,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -412,17 +410,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-
-" Generate ctags for php
-au BufWritePost *.php :silent !test -f .git/hooks/ctags && .git/hooks/ctags
-" PSR php fixer
-let g:php_cs_fixer_rules = "@PSR2" 
-
-"  UltiSnips
-let g:UltiSnipsExpandTrigger       = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-let g:UltiSnipsListSnippets        = "<c-k>" " List possible snippets based on current file
+""  UltiSnips
+let g:UltiSnipsExpandTrigger='<c-space>'
 
 " File explorer
 " NERDTree Ctrl+n
@@ -433,8 +422,6 @@ let NERDTreeHighlightCursorline = 0
 " Also run `goimports` on your current file on every save
 " Might be be slow on large codebases, if so, just comment it out
 let g:go_fmt_command = "goimports"
-"let g:go_highlight_diagnostic_errors = 0
-"let g:go_highlight_diagnostic_warnings = 0
 
 " Status line types/signatures.
 let g:go_auto_type_info = 1
@@ -481,7 +468,7 @@ let g:ctrlsf_ignore_dir = ["*.pyc", "*.pyo", ".next/", "_coverage/", "_build/", 
 "highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#444444
 "highlight ColorColumn ctermbg=235 guibg=#101010
 
-" if you want background transparency terminal
+" if you want background transparency terminal: 
 "hi Normal guibg=NONE ctermbg=NONE
 "highlight clear LineNr
 "highlight clear SignColumn
