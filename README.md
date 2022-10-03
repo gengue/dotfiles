@@ -1,5 +1,7 @@
 # Gengue's Dotfiles
 
+Check [my article](https://medium.com/@geneguer/el-camino-al-editor-definitivo-vim-3cf28137ca92) about vim.
+
 include:
 
   - VIM Config
