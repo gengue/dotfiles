@@ -10,17 +10,15 @@ month() {
 }
 
 dka() {
-	dk container kill $(dk ps -q)
+	docker container kill $(dk ps -q)
 }
 
 q() {
 	exit
 }
 
-# Gotta go fast
 dl() {
 	cd $HOME/Downloads && ls
-
 }
 
 tree() {
@@ -49,19 +47,24 @@ search() {
   open "https://www.google.com/search?q=$query"
 }
 
-record_no_audio() {
-	ffmpeg -f x11grab -s 1366x768 -i :0.0 output.mp4
-}
-
-record() {
-	ffmpeg -video_size 1366x768 -framerate 25 -vb 20M -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i pulse -acodec aac -strict experimental output.mp4
-}
-
-prettyjson() {
-	echo "$1" | python -m json.tool
-}
-
-# Gotta go fast!
 ven() {
 	cd $HOME/workspace/ventura && lsd
+}
+
+function mktouch () {
+  for p in $@; do
+    mkdir -p $(dirname "$p")
+  done
+
+  touch $@
+}
+
+function png2webp () {
+  for file in *; do
+      cwebp -q 100 "$file" -o "${file%.png}.webp"
+  done
+}
+
+function clean-branches(){
+  git branch | grep -v 'main' | xargs git branch -D
 }

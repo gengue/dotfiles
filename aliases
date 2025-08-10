@@ -9,9 +9,6 @@ alias ll="lsd -l"
 alias python="python3"
 alias vim=nvim
 alias v=nvim
-alias cursor="open $1 -a \"Cursor\""
-alias dk="sudo docker"
-alias dkc="sudo docker-compose"
 
 alias local-branches="!git branch --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
 alias ggraph="git log --graph --decorate"
