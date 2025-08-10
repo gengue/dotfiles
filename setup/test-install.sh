@@ -8,8 +8,9 @@ BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
-# Get the directory where this script is located
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Get the directory where this script is located (setup dir) and parent (dotfiles root)
+SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$(dirname "$SETUP_DIR")"
 TEST_HOME="/tmp/dotfiles-test-home"
 BACKUP_DIR="$TEST_HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
@@ -79,9 +80,9 @@ create_symlink() {
 
 # Handle secrets file
 echo -e "\n${BLUE}Testing secrets setup...${NC}"
-if [ ! -f "$DOTFILES_DIR/secrets.zsh" ]; then
+if [ ! -f "$DOTFILES_DIR/shell/secrets.zsh" ]; then
     echo -e "${YELLOW}Would copy secrets.example.zsh to secrets.zsh${NC}"
-    echo -e "${YELLOW}⚠ User would need to edit secrets.zsh and add API keys${NC}"
+    echo -e "${YELLOW}⚠ User would need to edit shell/secrets.zsh and add API keys${NC}"
 else
     echo -e "${GREEN}✓ secrets.zsh already exists${NC}"
 fi
@@ -97,10 +98,10 @@ fi
 # Test all symlinks
 echo -e "\n${BLUE}Testing symlink creation...${NC}"
 echo -e "${MAGENTA}---Shell Configuration---${NC}"
-create_symlink "$DOTFILES_DIR/zshrc" "$HOME/.zshrc"
-create_symlink "$DOTFILES_DIR/aliases" "$HOME/.aliases"
-create_symlink "$DOTFILES_DIR/functions" "$HOME/.functions"
-create_symlink "$DOTFILES_DIR/secrets.zsh" "$HOME/.secrets.zsh"
+create_symlink "$DOTFILES_DIR/shell/zshrc" "$HOME/.zshrc"
+create_symlink "$DOTFILES_DIR/shell/aliases" "$HOME/.aliases"
+create_symlink "$DOTFILES_DIR/shell/functions" "$HOME/.functions"
+create_symlink "$DOTFILES_DIR/shell/secrets.zsh" "$HOME/.secrets.zsh"
 
 echo -e "${MAGENTA}---Application Configurations---${NC}"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
@@ -149,4 +150,4 @@ echo -e "${YELLOW}Test environment location: $TEST_HOME${NC}"
 echo -e "${YELLOW}You can inspect the test setup before cleaning up${NC}"
 echo -e "${YELLOW}To clean up: rm -rf $TEST_HOME${NC}"
 echo ""
-echo -e "${GREEN}If everything looks good, run: ./install.sh${NC}"
+echo -e "${GREEN}If everything looks good, run: ./setup/install.sh${NC}"

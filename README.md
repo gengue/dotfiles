@@ -53,33 +53,37 @@ uv python install
 ```bash
 git clone https://github.com/gengue/dotfiles.git ~/workspace/dotfiles
 cd ~/workspace/dotfiles
-./install.sh
+./setup/install.sh
 ```
 
 Then:
-1. Edit `secrets.zsh` with your API keys
+1. Edit `shell/secrets.zsh` with your API keys
 2. Create `~/.claude/mcpservers.json` if needed (see `mcpservers.example.json`)
 3. Restart terminal or run `source ~/.zshrc`
 
 ### Scripts
 
+**Setup scripts** (in `setup/` folder):
 - **`install.sh`** - Sets up symlinks and creates backups
 - **`uninstall.sh`** - Removes symlinks, preserves secrets
 - **`test-install.sh`** - Test installation in `/tmp` without affecting system
+- **`mac-settings.sh`** - Apply optimized Mac settings (Neovim keyboard, disable animations)
+- **`backup-mac-settings.sh`** - Backup current Mac settings
+- **`restore-mac-settings.sh`** - Restore Mac settings from backup
 
 ### Configuration Files
 
 Managed configurations:
-- **Shell**: `.zshrc`, `.aliases`, `.functions`, `.secrets.zsh`
-- **Editors**: Neovim, Zed (settings/keymap/snippets as individual files)
-- **Terminals**: Ghostty, Alacritty, Warp
-- **Tools**: GitLab CLI, Claude instructions
+- **Shell** (in `shell/` folder): `.zshrc`, `.aliases`, `.functions`, `.secrets.zsh`
+- **Editors**: Neovim (`nvim/`), Zed (`zed/` - settings/keymap/snippets as individual files)
+- **Terminals**: Ghostty (`ghostty/`), Alacritty (`alacritty/`), Warp (`warp/`)
+- **Tools**: GitLab CLI (`glab-cli/`), Claude instructions (`claude/`)
 - **Manual imports**: Raycast, Dygma keyboard settings
 
 ### Uninstallation
 
 ```bash
-./uninstall.sh
+./setup/uninstall.sh
 ```
 
 This will remove all symlinks while preserving your secrets.
@@ -92,6 +96,21 @@ git pull
 ```
 
 Changes will be immediately reflected since everything is symlinked.
+
+### Mac Settings
+
+Apply optimized Mac settings for developers:
+
+```bash
+./setup/mac-settings.sh        # Apply all settings
+./setup/mac-settings.sh --help  # See options
+```
+
+This includes:
+- **Neovim keyboard settings**: Fast key repeat for efficient editing
+- **Disable animations**: Instant UI response for better performance
+
+Settings are automatically backed up before applying changes.
 
 ### Backups
 

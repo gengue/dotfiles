@@ -7,8 +7,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Get the directory where this script is located
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Get the directory where this script is located (setup dir) and parent (dotfiles root)
+SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$(dirname "$SETUP_DIR")"
 BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
 echo -e "${BLUE}==================================${NC}"
@@ -49,10 +50,10 @@ create_symlink() {
 
 # Handle secrets file
 echo -e "\n${BLUE}Setting up secrets...${NC}"
-if [ ! -f "$DOTFILES_DIR/secrets.zsh" ]; then
-    cp "$DOTFILES_DIR/secrets.example.zsh" "$DOTFILES_DIR/secrets.zsh"
+if [ ! -f "$DOTFILES_DIR/shell/secrets.zsh" ]; then
+    cp "$DOTFILES_DIR/shell/secrets.example.zsh" "$DOTFILES_DIR/shell/secrets.zsh"
     echo -e "${GREEN}✓ Created secrets.zsh from secrets.example.zsh${NC}"
-    echo -e "${YELLOW}⚠ Please edit secrets.zsh and add your API keys${NC}"
+    echo -e "${YELLOW}⚠ Please edit shell/secrets.zsh and add your API keys${NC}"
 else
     echo -e "${GREEN}✓ secrets.zsh already exists${NC}"
 fi
@@ -64,10 +65,10 @@ echo -e "${YELLOW}  Create your own ~/.claude/mcpservers.json if you use MCP ser
 
 # Shell configuration files
 echo -e "\n${BLUE}Setting up shell configuration...${NC}"
-create_symlink "$DOTFILES_DIR/zshrc" "$HOME/.zshrc"
-create_symlink "$DOTFILES_DIR/aliases" "$HOME/.aliases"
-create_symlink "$DOTFILES_DIR/functions" "$HOME/.functions"
-create_symlink "$DOTFILES_DIR/secrets.zsh" "$HOME/.secrets.zsh"
+create_symlink "$DOTFILES_DIR/shell/zshrc" "$HOME/.zshrc"
+create_symlink "$DOTFILES_DIR/shell/aliases" "$HOME/.aliases"
+create_symlink "$DOTFILES_DIR/shell/functions" "$HOME/.functions"
+create_symlink "$DOTFILES_DIR/shell/secrets.zsh" "$HOME/.secrets.zsh"
 
 # Neovim configuration
 echo -e "\n${BLUE}Setting up Neovim configuration...${NC}"
@@ -129,7 +130,7 @@ echo -e "${GREEN}     Installation Complete!       ${NC}"
 echo -e "${GREEN}==================================${NC}"
 echo ""
 echo -e "${YELLOW}Next steps:${NC}"
-echo -e "1. Edit ${BLUE}$DOTFILES_DIR/secrets.zsh${NC} and add your API keys"
+echo -e "1. Edit ${BLUE}$DOTFILES_DIR/shell/secrets.zsh${NC} and add your API keys"
 echo -e "2. Create ${BLUE}~/.claude/mcpservers.json${NC} if you use MCP servers (see mcpservers.example.json)"
 echo -e "3. Restart your terminal or run: ${BLUE}source ~/.zshrc${NC}"
 echo -e "4. If something went wrong, backups are in: ${BLUE}$BACKUP_DIR${NC}"

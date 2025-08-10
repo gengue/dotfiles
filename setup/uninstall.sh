@@ -7,8 +7,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Get the directory where this script is located
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Get the directory where this script is located (setup dir) and parent (dotfiles root)
+SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$(dirname "$SETUP_DIR")"
 
 echo -e "${BLUE}==================================${NC}"
 echo -e "${BLUE}     Dotfiles Uninstallation      ${NC}"
@@ -80,8 +81,8 @@ remove_symlink "$HOME/.claude/CLAUDE.md"
 
 # Preserve local files
 echo -e "\n${BLUE}Preserved files:${NC}"
-if [ -f "$DOTFILES_DIR/secrets.zsh" ]; then
-    echo -e "${GREEN}✓ $DOTFILES_DIR/secrets.zsh (contains your API keys)${NC}"
+if [ -f "$DOTFILES_DIR/shell/secrets.zsh" ]; then
+    echo -e "${GREEN}✓ $DOTFILES_DIR/shell/secrets.zsh (contains your API keys)${NC}"
 fi
 
 echo -e "\n${GREEN}==================================${NC}"
