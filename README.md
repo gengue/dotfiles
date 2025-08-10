@@ -50,78 +50,41 @@ uv python install
 
 ## Installation
 
-### Quick Start
+```bash
+git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/workspace/dotfiles
+cd ~/workspace/dotfiles
+./install.sh
+```
 
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/workspace/dotfiles
-   cd ~/workspace/dotfiles
-   ```
+Then:
+1. Edit `secrets.zsh` with your API keys
+2. Create `~/.claude/mcpservers.json` if needed (see `mcpservers.example.json`)
+3. Restart terminal or run `source ~/.zshrc`
 
-2. **Run the installation script:**
-   ```bash
-   ./install.sh
-   ```
+### Scripts
 
-3. **Configure your secrets:**
-   - Edit `secrets.zsh` and add your API keys
-   - Edit `mcpservers.json` if you need MCP server configuration
-
-4. **Restart your terminal or reload configuration:**
-   ```bash
-   source ~/.zshrc
-   ```
-
-### What the installer does
-
-The `install.sh` script will:
-- Create timestamped backups of any existing configurations
-- Create symlinks from this repository to the appropriate locations
-- Copy `secrets.example.zsh` to `secrets.zsh` if it doesn't exist
-- Copy `mcpservers.example.json` to `mcpservers.json` if it doesn't exist
+- **`install.sh`** - Sets up symlinks and creates backups
+- **`uninstall.sh`** - Removes symlinks, preserves secrets
+- **`test-install.sh`** - Test installation in `/tmp` without affecting system
 
 ### Configuration Files
 
-The following configurations are managed by this repository:
-
-#### Shell Configuration
-- `.zshrc` - Zsh configuration
-- `.aliases` - Shell aliases
-- `.functions` - Shell functions
-- `.secrets.zsh` - API keys and tokens (not tracked in git)
-
-#### Editor Configurations
-- `.config/nvim/` - Neovim configuration
-- `.config/zed/` - Zed editor settings
-
-#### Terminal Emulators
-- `.config/ghostty/` - Ghostty terminal configuration
-- `.config/alacritty/` - Alacritty terminal configuration
-- `.warp/` - Warp terminal themes and keybindings
-
-#### Other Tools
-- `.config/glab-cli/` - GitLab CLI configuration
-- `.claude/CLAUDE.md` - Claude AI instructions
-- `.claude/mcpservers.json` - MCP server configuration (not tracked in git)
-- `Raycast.rayconfig` - Raycast configuration (import manually)
-- `dygama-raise-settings.json` - Dygma keyboard settings (import manually)
+Managed configurations:
+- **Shell**: `.zshrc`, `.aliases`, `.functions`, `.secrets.zsh`
+- **Editors**: Neovim, Zed (settings/keymap/snippets as individual files)
+- **Terminals**: Ghostty, Alacritty, Warp
+- **Tools**: GitLab CLI, Claude instructions
+- **Manual imports**: Raycast, Dygma keyboard settings
 
 ### Uninstallation
-
-To remove all symlinks created by the installer:
 
 ```bash
 ./uninstall.sh
 ```
 
-This will:
-- Remove all symlinks pointing to this repository
-- Preserve your `secrets.zsh` and `mcpservers.json` files
-- Keep any backups that were created during installation
+This will remove all symlinks while preserving your secrets.
 
 ### Updating
-
-To update your configurations:
 
 ```bash
 cd ~/workspace/dotfiles

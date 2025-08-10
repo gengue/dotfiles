@@ -57,15 +57,10 @@ else
     echo -e "${GREEN}✓ secrets.zsh already exists${NC}"
 fi
 
-# Handle mcpservers.json
-echo -e "\n${BLUE}Setting up MCP servers configuration...${NC}"
-if [ ! -f "$DOTFILES_DIR/mcpservers.json" ]; then
-    cp "$DOTFILES_DIR/mcpservers.example.json" "$DOTFILES_DIR/mcpservers.json"
-    echo -e "${GREEN}✓ Created mcpservers.json from mcpservers.example.json${NC}"
-    echo -e "${YELLOW}⚠ Please edit mcpservers.json if you need to configure MCP servers${NC}"
-else
-    echo -e "${GREEN}✓ mcpservers.json already exists${NC}"
-fi
+# Note about mcpservers.json
+echo -e "\n${BLUE}MCP servers configuration...${NC}"
+echo -e "${YELLOW}ℹ mcpservers.example.json is provided as a reference${NC}"
+echo -e "${YELLOW}  Create your own ~/.claude/mcpservers.json if you use MCP servers${NC}"
 
 # Shell configuration files
 echo -e "\n${BLUE}Setting up shell configuration...${NC}"
@@ -93,11 +88,22 @@ create_symlink "$DOTFILES_DIR/warp/themes" "$HOME/.warp/themes"
 
 # Zed editor
 echo -e "\n${BLUE}Setting up Zed editor configuration...${NC}"
-create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
+if [ ! -d "$HOME/.config/zed" ]; then
+    mkdir -p "$HOME/.config/zed"
+fi
+create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
+create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+if [ ! -d "$HOME/.config/zed/snippets" ]; then
+    mkdir -p "$HOME/.config/zed/snippets"
+fi
+create_symlink "$DOTFILES_DIR/zed/snippets/javascript.json" "$HOME/.config/zed/snippets/javascript.json"
 
 # GitLab CLI
 echo -e "\n${BLUE}Setting up GitLab CLI configuration...${NC}"
-create_symlink "$DOTFILES_DIR/glab-cli" "$HOME/.config/glab-cli"
+if [ ! -d "$HOME/.config/glab-cli" ]; then
+    mkdir -p "$HOME/.config/glab-cli"
+fi
+create_symlink "$DOTFILES_DIR/glab-cli/config.yml" "$HOME/.config/glab-cli/config.yml"
 
 # Claude configuration
 echo -e "\n${BLUE}Setting up Claude configuration...${NC}"
@@ -105,7 +111,6 @@ if [ ! -d "$HOME/.claude" ]; then
     mkdir -p "$HOME/.claude"
 fi
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/mcpservers.json" "$HOME/.claude/mcpservers.json"
 
 # Raycast (optional - only if installed)
 if command -v raycast &> /dev/null; then
@@ -125,7 +130,8 @@ echo -e "${GREEN}==================================${NC}"
 echo ""
 echo -e "${YELLOW}Next steps:${NC}"
 echo -e "1. Edit ${BLUE}$DOTFILES_DIR/secrets.zsh${NC} and add your API keys"
-echo -e "2. Restart your terminal or run: ${BLUE}source ~/.zshrc${NC}"
-echo -e "3. If something went wrong, backups are in: ${BLUE}$BACKUP_DIR${NC}"
+echo -e "2. Create ${BLUE}~/.claude/mcpservers.json${NC} if you use MCP servers (see mcpservers.example.json)"
+echo -e "3. Restart your terminal or run: ${BLUE}source ~/.zshrc${NC}"
+echo -e "4. If something went wrong, backups are in: ${BLUE}$BACKUP_DIR${NC}"
 echo ""
 echo -e "${GREEN}Happy coding! 🚀${NC}"

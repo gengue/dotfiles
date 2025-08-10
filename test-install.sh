@@ -106,12 +106,22 @@ echo -e "${MAGENTA}---Application Configurations---${NC}"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
 create_symlink "$DOTFILES_DIR/alacritty" "$HOME/.config/alacritty"
+
+echo -e "${MAGENTA}---Warp Terminal---${NC}"
 create_symlink "$DOTFILES_DIR/warp/keybindings.yaml" "$HOME/.warp/keybindings.yaml"
 create_symlink "$DOTFILES_DIR/warp/themes" "$HOME/.warp/themes"
-create_symlink "$DOTFILES_DIR/zed" "$HOME/.config/zed"
-create_symlink "$DOTFILES_DIR/glab-cli" "$HOME/.config/glab-cli"
+
+echo -e "${MAGENTA}---Zed Editor (Individual Files)---${NC}"
+create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
+create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+create_symlink "$DOTFILES_DIR/zed/snippets/javascript.json" "$HOME/.config/zed/snippets/javascript.json"
+
+echo -e "${MAGENTA}---GitLab CLI (Individual File)---${NC}"
+create_symlink "$DOTFILES_DIR/glab-cli/config.yml" "$HOME/.config/glab-cli/config.yml"
+
+echo -e "${MAGENTA}---Claude Configuration---${NC}"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/mcpservers.json" "$HOME/.claude/mcpservers.json"
+echo -e "${YELLOW}ℹ mcpservers.json is not symlinked (user should create their own)${NC}"
 
 # Verify test results
 echo -e "\n${MAGENTA}==================================${NC}"

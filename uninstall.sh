@@ -65,25 +65,23 @@ remove_symlink "$HOME/.warp/keybindings.yaml"
 remove_symlink "$HOME/.warp/themes"
 
 # Zed editor
-echo -e "\n${BLUE}Removing Zed editor configuration symlink...${NC}"
-remove_symlink "$HOME/.config/zed"
+echo -e "\n${BLUE}Removing Zed editor configuration symlinks...${NC}"
+remove_symlink "$HOME/.config/zed/settings.json"
+remove_symlink "$HOME/.config/zed/keymap.json"
+remove_symlink "$HOME/.config/zed/snippets/javascript.json"
 
 # GitLab CLI
 echo -e "\n${BLUE}Removing GitLab CLI configuration symlink...${NC}"
-remove_symlink "$HOME/.config/glab-cli"
+remove_symlink "$HOME/.config/glab-cli/config.yml"
 
 # Claude configuration
-echo -e "\n${BLUE}Removing Claude configuration symlinks...${NC}"
+echo -e "\n${BLUE}Removing Claude configuration symlink...${NC}"
 remove_symlink "$HOME/.claude/CLAUDE.md"
-remove_symlink "$HOME/.claude/mcpservers.json"
 
 # Preserve local files
 echo -e "\n${BLUE}Preserved files:${NC}"
 if [ -f "$DOTFILES_DIR/secrets.zsh" ]; then
     echo -e "${GREEN}✓ $DOTFILES_DIR/secrets.zsh (contains your API keys)${NC}"
-fi
-if [ -f "$DOTFILES_DIR/mcpservers.json" ]; then
-    echo -e "${GREEN}✓ $DOTFILES_DIR/mcpservers.json (contains your MCP config)${NC}"
 fi
 
 echo -e "\n${GREEN}==================================${NC}"
