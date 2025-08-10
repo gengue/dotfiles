@@ -1,0 +1,48 @@
+{
+	"mcpServers": {
+		"ClickUp": {
+			"command": "npx",
+			"args": ["-y", "@taazkareem/clickup-mcp-server@latest"],
+			"env": {
+				"CLICKUP_API_KEY": "",
+				"CLICKUP_TEAM_ID": "529",
+				"DOCUMENT_SUPPORT": "true"
+			}
+		},
+		"fetch": {
+			"command": "uvx",
+			"args": ["mcp-server-fetch"]
+		},
+		"filesystem": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-filesystem",
+				"/Users/genesis/workspace"
+			]
+		},
+		"brave-search": {
+			"command": "npx",
+			"args": ["-y", "@modelcontextprotocol/server-brave-search"],
+			"env": {
+				"BRAVE_API_KEY": ""
+			}
+		},
+		"browsermcp": {
+			"command": "npx",
+			"args": ["@browsermcp/mcp@latest"]
+		},
+		"claude-code": {
+			"command": "claude",
+			"args": ["mcp", "serve"]
+		},
+		"hasura": {
+			"command": "npx",
+			"args": ["mcp-graphql"],
+			"env": {
+				"HEADERS": "{\"x-hasura-admin-secret\":\"\"}",
+				"ENDPOINT": "https://domain.com/v1/graphql"
+			}
+		}
+	}
+}

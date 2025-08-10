@@ -1,0 +1,55 @@
+# ----------
+# Key bindings
+# ----------
+
+# vim motion to split terminals
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+l=new_split:right
+# scroll
+keybind = ctrl+shift+p=scroll_page_up 
+keybind = ctrl+shift+n=scroll_page_down
+
+keybind = ctrl+shift+w=write_scrollback_file:paste
+
+# ----------
+# Appearance
+# ----------
+
+# Empty values reset the configuration to the default value
+#font-family = FiraCode Nerd Font Mono
+#font-family = Hack Nerd Font Mono
+# font-family = Geist Mono
+# font-family = Zed Mono
+font-family = IBM Plex Mono
+font-size = 15
+adjust-cell-height = 20% 
+
+# theme = dark:terafox,light:flexoki-light
+# theme = dark:vesper-custom.conf,light:Github-Light-Default
+theme = dark:kanso-ink.conf,light:xcodelight
+
+window-theme = system
+desktop-notifications = true
+
+
+# dark theme a bit more aggressive 
+background-opacity = 0.92
+background-blur-radius = 40 
+# background-blur = true
+unfocused-split-opacity = 0.88
+split-divider-color = #686868
+
+# glass!!
+# background-opacity = 0.75
+# background-blur-radius = 40 
+
+window-inherit-font-size = false
+
+mouse-hide-while-typing = true
+
+cursor-style = block
+
+shell-integration-features = no-cursor, no-sudo, title
+keybind = shift+enter=text:\n

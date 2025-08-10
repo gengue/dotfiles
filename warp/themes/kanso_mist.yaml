@@ -1,0 +1,26 @@
+name: Kanso Mist
+accent: '#8ba4b0'
+cursor: '#8ba4b0'
+background: '#22262D'
+foreground: '#C5C9C7'
+details: darker
+
+terminal_colors:
+  normal:
+    black: '#22262D'
+    red: '#c4746e'
+    green: '#8a9a7b'
+    yellow: '#c4b28a'
+    blue: '#8ba4b0'
+    magenta: '#a292a3'
+    cyan: '#8ea4a2'
+    white: '#a4a7a4'
+  bright:
+    black: '#5C6066'
+    red: '#e46876'
+    green: '#87a987'
+    yellow: '#e6c384'
+    blue: '#7fb4ca'
+    magenta: '#938aa9'
+    cyan: '#7aa89f'
+    white: '#C5C9C7'

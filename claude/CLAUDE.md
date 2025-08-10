@@ -1,0 +1,2 @@
+- Always write code comments in English
+- Never use your name in commit messages

@@ -1,0 +1,67 @@
+#!/usr/bin/env sh
+
+# Get week number
+week() {
+	date +%V
+}
+
+month() {
+	date +%m
+}
+
+dka() {
+	dk container kill $(dk ps -q)
+}
+
+q() {
+	exit
+}
+
+# Gotta go fast
+dl() {
+	cd $HOME/Downloads && ls
+
+}
+
+tree() {
+	lsd --tree
+}
+
+left() {
+	ls -t -1
+}
+
+# The last command with sudo
+please() {
+	sudo $(fc -ln -1)
+}
+
+upload() {
+	curl -F"file=@$(pwd)/$1" https://0x0.st
+}
+
+unzip() {
+	bsdtar xvf $1
+}
+
+search() {
+  query="$*"
+  open "https://www.google.com/search?q=$query"
+}
+
+record_no_audio() {
+	ffmpeg -f x11grab -s 1366x768 -i :0.0 output.mp4
+}
+
+record() {
+	ffmpeg -video_size 1366x768 -framerate 25 -vb 20M -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i pulse -acodec aac -strict experimental output.mp4
+}
+
+prettyjson() {
+	echo "$1" | python -m json.tool
+}
+
+# Gotta go fast!
+ven() {
+	cd $HOME/workspace/ventura && lsd
+}

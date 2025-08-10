@@ -1,0 +1,20 @@
+alias ventura="ven"
+alias work="cd ~/workspace"
+
+alias zshconfig="nvim ~/.zshrc"
+alias vimconfig="cd ~/.config/nvim/lua && nvim ~/.config/nvim/lua"
+alias nvimconfig="cd ~/.config/nvim/lua && nvim ~/.config/nvim/lua"
+
+alias ll="lsd -l"
+alias python="python3"
+alias vim=nvim
+alias v=nvim
+alias cursor="open $1 -a \"Cursor\""
+alias dk="sudo docker"
+alias dkc="sudo docker-compose"
+
+alias local-branches="!git branch --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
+alias ggraph="git log --graph --decorate"
+alias ggraph2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+alias gg=lazygit
+alias dd=lazydocker

@@ -1,0 +1,130 @@
+[
+  {
+    "bindings": {
+      "ctrl-p": "menu::SelectPrevious",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-n": "menu::SelectNext",
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-\\": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Workspace && not_editing",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-\\": "workspace::ToggleBottomDock",
+      "space f f": "file_finder::Toggle",
+      "space f w": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "Pane && not_editing",
+    "bindings": {
+      "space c": "pane::CloseActiveItem",
+      "ctrl-\\": "workspace::ToggleBottomDock",
+      "space f f": "file_finder::Toggle",
+      "space f w": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !Terminal",
+    "bindings": {
+      "ctrl-x ctrl-a": "assistant::InlineAssist" // zed specific
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "space o": "tab_switcher::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !Terminal",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f w": "project_symbols::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space r": "workspace::ToggleRightDock",
+      "ctrl-\\": "workspace::ToggleBottomDock",
+      "space c": "pane::CloseActiveItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
+      "= =": "editor::Format",
+      "shift-k": "editor::Hover",
+      "space l R": "editor::FindAllReferences",
+      "g r r": "editor::FindAllReferences",
+      "space l r": "editor::Rename",
+      "space l a": "editor::ToggleCodeActions",
+      "g F": "editor::OpenExcerpts", // to to a file after check references
+      "g y": "editor::GoToTypeDefinition",
+      "g I": "editor::GoToImplementation",
+      "space /": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !Terminal",
+    "bindings": {
+      "space /": "editor::ToggleComments",
+      "ctrl-n": ["editor::SelectNext", { "replace_newest": false }]
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing && !Terminal",
+    "bindings": {
+      "k": "menu::SelectPrevious",
+      "j": "menu::SelectNext",
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      "o": "project_panel::Open",
+      "r": "project_panel::Rename",
+      "g y": "workspace::CopyPath",
+      "shift-o": "project_panel::RevealInFileManager",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "d": "project_panel::Delete",
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "shift-y": "workspace::CopyRelativePath",
+      "space e": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
+    "bindings": {
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "] d": "editor::GoToDiagnostic"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w t": "terminal_panel::ToggleFocus",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-\\": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "ctrl-p": "editor::ContextMenuPrevious",
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-n": "editor::ContextMenuNext",
+      "pageup": "editor::ContextMenuFirst",
+      "pagedown": "editor::ContextMenuLast"
+    }
+  }
+]

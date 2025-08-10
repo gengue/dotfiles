@@ -1,0 +1,43 @@
+# Personal API Keys
+# Uncomment and fill in your API keys
+
+# AI/LLM Services
+export OPENAI_API_KEY=
+export OPENAI_API_KEY_LAZYGIT=
+export ANTHROPIC_API_KEY=
+export DEEPSEEK_API_KEY=
+export GROQ_API_KEY=
+export REPLICATE_API_KEY=
+export TOGETHERAI_API_KEY=
+export VOYAGEAI_API_KEY=
+export GEMINI_API_KEY=
+# export GOOGLE_AI_API_KEY=
+export OPEN_ROUTER_API_KEY=
+
+# Other Services
+export YOUTUBE_API_KEY=
+export BRAVE_API_KEY=
+export SUPABASE_PERSONAL_ACCESS_TOKEN=
+export ELEVENLABS_API_KEY=
+
+# ventura
+# uncomment to enable ventura
+# export OPENAI_API_KEY_VBOT=
+export OPENAI_API_KEY=
+export GOOGLE_AI_API_KEY_VEN=
+export GOOGLE_AI_API_KEY=
+export GEMINI_API_KEY_VEN=
+# export GEMINI_API_KEY=
+
+export CU_PERSONAL_ACCESS_TOKEN=
+export CLICKUP_API_KEY=
+export CLICKUP_TEAM_ID=529
+
+export VEN_HASURA_PRD_URL=
+export VEN_HASURA_PRD_PWD=
+export VEN_HASURA_DEV_URL=
+export VEN_HASURA_DEV_PWD=
+export VEN_DB_URL_PRD=
+
+export DOPPLER_API_KEY=
+export VEN_GITLAB_PERSONAL_ACCESS_TOKEN=
