@@ -51,7 +51,7 @@ uv python install
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/workspace/dotfiles
+git clone https://github.com/gengue/dotfiles.git ~/workspace/dotfiles
 cd ~/workspace/dotfiles
 ./install.sh
 ```
