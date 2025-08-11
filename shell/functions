@@ -51,6 +51,10 @@ ven() {
 	cd $HOME/workspace/ventura && lsd
 }
 
+dotfiles() {
+	cd $HOME/workspace/dotfiles && lsd
+}
+
 function mktouch () {
   for p in $@; do
     mkdir -p $(dirname "$p")

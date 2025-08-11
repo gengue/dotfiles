@@ -1,16 +1,53 @@
+local italics = {
+  comments = true,
+  keywords = false,
+  functions = false,
+  strings = false,
+  variables = false,
+}
+
 return {
-  -- { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
-  -- { 'EdenEast/nightfox.nvim' },
-  -- {
-  --   'metalelf0/black-metal-theme-neovim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('black-metal').setup {}
-  --     require('black-metal').load()
-  --   end,
-  -- },
-  'tinted-theming/tinted-nvim',
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'EdenEast/nightfox.nvim' },
+  {
+    'tiesen243/vercel.nvim',
+    opts = {
+      theme = 'dark',
+      italics = italics,
+    },
+  },
+  { 'atmosuwiryo/vim-winteriscoming' },
+  {
+    'rockerBOO/boo-colorscheme-nvim',
+    config = function()
+      require('boo-colorscheme').use {
+        italic = true,
+      }
+    end,
+  },
+  { 'kyazdani42/blue-moon' },
+  { 'nikolvs/vim-sunbather' },
+  { 'dasupradyumna/midnight.nvim', lazy = false, priority = 1000 },
+  {
+    'metalelf0/black-metal-theme-neovim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('black-metal').setup {}
+      require('black-metal').load()
+    end,
+  },
+  {
+    'datsfilipe/vesper.nvim',
+    config = function()
+      require('vesper').setup {
+        transparent = false,
+        italics = italics,
+        overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+        palette_overrides = {},
+      }
+    end,
+  },
   {
     'webhooked/kanso.nvim',
     lazy = false,
