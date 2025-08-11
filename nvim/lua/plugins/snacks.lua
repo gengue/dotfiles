@@ -30,7 +30,9 @@ return {
     {
       '<leader>gg',
       function()
-        Snacks.lazygit()
+        Snacks.lazygit {
+          win = { width = 0, height = 0 },
+        }
       end,
       desc = 'LazyGit',
     },

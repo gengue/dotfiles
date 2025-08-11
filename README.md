@@ -26,6 +26,9 @@ brew install --cask raycast ghostty ngrok font-fira-code-nerd-font font-hack-ner
 brew tap oven-sh/bun
 brew install bun
 
+brew tap tinted-theming/tinted
+brew install tinty
+
 ````
 
 ### Agentic AI 

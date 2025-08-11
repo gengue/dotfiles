@@ -10,6 +10,7 @@ return {
   --     require('black-metal').load()
   --   end,
   -- },
+  'tinted-theming/tinted-nvim',
   {
     'webhooked/kanso.nvim',
     lazy = false,
@@ -23,7 +24,8 @@ return {
       set_dark_mode = function()
         vim.api.nvim_set_option_value('background', 'dark', {})
         -- vim.cmd 'colorscheme terafox'
-        vim.cmd 'colorscheme kanso'
+        -- vim.cmd 'colorscheme base16-valua'
+        vim.cmd 'colorscheme kanso-zen'
       end,
       set_light_mode = function()
         vim.api.nvim_set_option_value('background', 'light', {})
