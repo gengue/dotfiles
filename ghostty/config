@@ -35,8 +35,8 @@ desktop-notifications = true
 
 
 # dark theme a bit more aggressive 
-background-opacity = 0.92
-background-blur-radius = 40 
+background-opacity = 0.93
+background-blur-radius = 20 
 # background-blur = true
 unfocused-split-opacity = 0.88
 split-divider-color = #686868
@@ -51,5 +51,15 @@ mouse-hide-while-typing = true
 
 cursor-style = block
 
+window-decoration = none
+
+macos-option-as-alt = true
+
+
+# window-colorspace = sRGB
+window-colorspace = display-p3
+
+
 shell-integration-features = no-cursor, no-sudo, title
+
 keybind = shift+enter=text:\n
