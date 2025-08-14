@@ -7,11 +7,11 @@ return {
     opts = {
       ensure_installed = {
         'bash',
-        'c',
         'diff',
         'html',
         'lua',
         'luadoc',
+        'go',
         'markdown',
         'markdown_inline',
         'query',

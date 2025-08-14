@@ -20,7 +20,12 @@ return {
           html = true,
           javascript = true,
           typescript = true,
-          ['*'] = true,
+          typescriptreact = true,
+          go = true,
+          python = true,
+          sql = true,
+          lua = true,
+          -- ['*'] = true,
         },
       }
 
