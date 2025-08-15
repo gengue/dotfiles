@@ -113,6 +113,14 @@ if [ ! -d "$HOME/.claude" ]; then
 fi
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
+# Lazygit configuration
+if [ ! -d "$HOME/Library/Application Support/lazygit" ]; then
+		mkdir -p "$HOME/Library/Application Support/lazygit"
+fi
+
+[ -f "$HOME/Library/Application Support/lazygit/config.yml" ] && mv "$HOME/Library/Application Support/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.backup.yml"
+create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
+
 # Raycast (optional - only if installed)
 if command -v raycast &> /dev/null; then
     echo -e "\n${BLUE}Setting up Raycast configuration...${NC}"

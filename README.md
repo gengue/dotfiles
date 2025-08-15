@@ -20,7 +20,7 @@ If this this is a new machine, this is my must-have software to install:
 ### Homebrew
 
 ```bash
-brew install git neovim zellij node go uv sqlite jq lazygit lazysql libpng jpeg ncurses chafa graphviz graphicsmagick tree-sitter fzf ripgrep fd gh glab
+brew install git neovim zellij node go uv sqlite jq lazygit lazysql bat ripgrep libpng jpeg ncurses chafa graphviz graphicsmagick tree-sitter fzf ripgrep fd gh glab
 brew install --cask raycast ghostty ngrok font-fira-code-nerd-font font-hack-nerd-font font-meslo-lg-nerd-font font-ibm-plex-mono 
 
 brew tap oven-sh/bun
