@@ -16,59 +16,32 @@ return {
     },
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        -- lsp_format = 'fallback',
-      },
+      format_on_save = function(bufnr)
+        local lsp_format_opt = 'never'
+        return {
+          timeout_ms = 500,
+          lsp_format = lsp_format_opt,
+        }
+      end,
       -- Configure formatters to respect project config
       formatters = {
         prettier = {
-          -- Use local prettier config if it exists
-          condition = function(self, ctx)
-            return vim.fs.find(
-              { '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.yaml', '.prettierrc.js', 'prettier.config.js' },
-              { path = ctx.filename, upward = true }
-            )[1]
-          end,
-        },
-        eslint_d = {
-          condition = function(self, ctx)
-            return vim.fs.find({ '.eslintrc', '.eslintrc.js', '.eslintrc.json', 'eslint.config.js' }, { path = ctx.filename, upward = true })[1]
-          end,
+          require_cwd = true, -- Only run if a Prettier config is found in CWD
         },
       },
       formatters_by_ft = {
-        json = { 'jq' },
         lua = { 'stylua' },
+        json = { 'biome' },
+        jsonc = { 'biome' },
+        html = { 'biome' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- Prioritize prettier and eslint_d over biome for better project compatibility
-        javascript = {
-          'prettier',
-          'eslint_d',
-          'biome',
-          stop_after_first = true,
-        },
-        javascriptreact = {
-          'prettier',
-          'eslint_d',
-          'biome',
-          stop_after_first = true,
-        },
-        typescript = {
-          'prettier',
-          'eslint_d',
-          'biome',
-          stop_after_first = true,
-        },
-        typescriptreact = {
-          'prettier',
-          'eslint_d',
-          'biome',
-          stop_after_first = true,
-        },
+        javascript = { 'prettier', 'biome', stop_after_first = true },
+        javascriptreact = { 'prettier', 'biome', stop_after_first = true },
+        ['typescript.tsx'] = { 'prettier', 'biome', stop_after_first = true },
+        typescript = { 'prettier', 'biome', stop_after_first = true },
+        typescriptreact = { 'prettier', 'biome', stop_after_first = true },
+        go = { 'goimports', 'gofmt' },
       },
     },
   },
@@ -80,7 +53,8 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
-        json = { 'jsonlint' },
+        -- json = { 'jsonlint' },
+        json = { 'biome' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -104,16 +78,14 @@ return {
       -- }
       --
       -- You can disable the default linters by setting their filetypes to nil:
-      -- lint.linters_by_ft['clojure'] = nil
-      -- lint.linters_by_ft['dockerfile'] = nil
-      -- lint.linters_by_ft['inko'] = nil
-      -- lint.linters_by_ft['janet'] = nil
-      -- lint.linters_by_ft['json'] = nil
+      lint.linters_by_ft['clojure'] = nil
+      lint.linters_by_ft['dockerfile'] = nil
+      lint.linters_by_ft['inko'] = nil
+      lint.linters_by_ft['janet'] = nil
+      lint.linters_by_ft['json'] = nil
       lint.linters_by_ft['markdown'] = nil
-      -- lint.linters_by_ft['rst'] = nil
-      -- lint.linters_by_ft['ruby'] = nil
-      -- lint.linters_by_ft['terraform'] = nil
-      -- lint.linters_by_ft['text'] = nil
+      lint.linters_by_ft['terraform'] = nil
+      lint.linters_by_ft['text'] = nil
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
@@ -133,9 +105,14 @@ return {
   },
 
   {
-    'windwp/nvim-ts-autotag',
+    'nmac427/guess-indent.nvim',
     config = function()
-      require('nvim-ts-autotag').setup()
+      require('guess-indent').setup {}
     end,
+  },
+
+  {
+    'windwp/nvim-ts-autotag',
+    opts = {},
   },
 }

@@ -128,7 +128,6 @@ return {
       },
     },
 
-    -- Auto-detect indentation - replaces guess-indent.nvim
     indent = {
       enabled = true,
       priority = 1, -- Run early
