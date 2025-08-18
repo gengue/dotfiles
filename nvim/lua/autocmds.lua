@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = '*',
+  pattern = 'javascript,javascriptreact,typescript,typescriptreact',
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2

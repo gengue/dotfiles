@@ -142,3 +142,5 @@ alias claude="$HOME/.claude/local/claude"
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
 export PATH=$HOME/.docker/bin:$PATH
+
+source <(fzf --zsh)
