@@ -3,7 +3,7 @@
 return {
   {
     'zbirenbaum/copilot.lua',
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     config = function()
       require('copilot').setup {
         suggestion = {

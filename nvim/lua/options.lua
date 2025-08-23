@@ -5,6 +5,13 @@
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Enable syntax highlighting
+vim.opt.termguicolors = true
+
+-- blink cursor
+vim.o.guicursor =
+  'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
@@ -26,6 +33,9 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
+
+-- nice window borders
+vim.o.winborder = 'rounded'
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true

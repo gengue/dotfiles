@@ -3,6 +3,7 @@
 return {
   { -- Enhanced markdown rendering
     'MeanderingProgrammer/render-markdown.nvim',
+    lazy = true,
     ft = { 'markdown' },
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     ---@module 'render-markdown'
@@ -10,6 +11,10 @@ return {
     opts = {
       completions = { blink = { enabled = true } },
       file_types = { 'markdown' },
+      code = {
+        disable_background = true,
+        language = false,
+      },
     },
   },
 
@@ -32,7 +37,7 @@ return {
 
   { -- Clipboard image pasting
     'HakonHarnes/img-clip.nvim',
-    event = 'VeryLazy',
+    lazy = true,
     ft = { 'markdown' },
     opts = {
       -- add options here
