@@ -2,16 +2,23 @@
 # Key bindings
 # ----------
 
-# vim motion to split terminals
-keybind = ctrl+shift+j=new_split:down
-keybind = ctrl+shift+k=new_split:up
-keybind = ctrl+shift+h=new_split:left
-keybind = ctrl+shift+l=new_split:right
-# scroll
-keybind = ctrl+shift+p=scroll_page_up 
-keybind = ctrl+shift+n=scroll_page_down
+# vim motion to move between splits
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+l=goto_split:right
+# keybind = ctrl+j=goto_split:bottom
+# keybind = ctrl+k=goto_split:top
 
-keybind = ctrl+shift+w=write_scrollback_file:paste
+# scroll
+keybind = super+ctrl+p=scroll_page_up 
+keybind = super+ctrl+n=scroll_page_down
+keybind = super+ctrl+k=scroll_page_up 
+keybind = super+ctrl+j=scroll_page_down
+
+# vim motion to split terminals
+keybind = super+shift+j=new_split:down
+keybind = super+shift+k=new_split:up
+keybind = super+shift+h=new_split:left
+keybind = super+shift+l=new_split:right
 
 # ----------
 # Appearance
@@ -33,10 +40,9 @@ theme = dark:kanso-zen.conf,light:xcodelight
 window-theme = system
 desktop-notifications = true
 
-# dark theme a bit more aggressive 
 background-opacity = 0.92
 background-blur-radius = 20 
-unfocused-split-opacity = 0.88
+unfocused-split-opacity = 0.97
 split-divider-color = #686868
 
 # glass!!
