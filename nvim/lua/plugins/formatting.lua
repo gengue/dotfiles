@@ -28,12 +28,17 @@ return {
         prettier = {
           require_cwd = true, -- Only run if a Prettier config is found in CWD
         },
+        biome = {
+          require_cwd = true, -- Only run if biome.json is found in CWD
+        },
       },
       formatters_by_ft = {
         lua = { 'stylua' },
-        json = { 'biome' },
-        jsonc = { 'biome' },
-        html = { 'biome' },
+        json = { 'prettier', 'biome', stop_after_first = true },
+        jsonc = { 'prettier', 'biome', stop_after_first = true },
+        html = { 'prettier', 'biome', stop_after_first = true },
+        css = { 'prettier', 'biome', stop_after_first = true },
+        scss = { 'prettier', 'biome', stop_after_first = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         javascript = { 'prettier', 'biome', stop_after_first = true },
