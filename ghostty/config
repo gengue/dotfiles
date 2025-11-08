@@ -35,7 +35,7 @@ adjust-cell-height = 20%
 
 # theme = dark:terafox,light:flexoki-light
 # theme = dark:vesper-custom.conf,light:Github-Light-Default
-theme = dark:kanso-zen.conf,light:xcodelight
+theme = dark:kanso-zen.conf,light:Xcode Light
 
 window-theme = system
 desktop-notifications = true
