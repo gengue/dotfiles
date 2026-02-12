@@ -35,13 +35,16 @@ adjust-cell-height = 20%
 
 # theme = dark:terafox,light:flexoki-light
 # theme = dark:vesper-custom.conf,light:Github-Light-Default
-theme = dark:kanso-zen.conf,light:Xcode Light
+# theme = dark:kanso-zen.conf,light:Xcode Light
+# theme = dark:oldworld.conf,light:Xcode Light
+# theme = dark:vercel,light:Xcode Light
+theme = dark:carbonfox,light:Github Light Default
 
 window-theme = system
 desktop-notifications = true
 
 background-opacity = 0.92
-background-blur-radius = 20 
+background-blur-radius = 30
 unfocused-split-opacity = 0.97
 split-divider-color = #686868
 
@@ -57,7 +60,7 @@ cursor-style = block
 
 macos-option-as-alt = true
 
-# window-colorspace = sRGB
+#window-colorspace = srgb
 window-colorspace = display-p3
 
 shell-integration-features = no-cursor, no-sudo, title

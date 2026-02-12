@@ -1,2 +1,4 @@
 - Always write code comments in English
-- Never use your name in commit messages
+- never use your name in commit messages
+- never include authors or co-authors in commit messages
+- NEVER add co-author information or Claude attribution
