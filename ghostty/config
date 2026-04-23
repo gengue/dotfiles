@@ -38,7 +38,8 @@ adjust-cell-height = 20%
 # theme = dark:kanso-zen.conf,light:Xcode Light
 # theme = dark:oldworld.conf,light:Xcode Light
 # theme = dark:vercel,light:Xcode Light
-theme = dark:carbonfox,light:Github Light Default
+# theme = dark:carbonfox,light:Github Light Default
+theme = dark:oldworld.conf,light:Github Light Default
 
 window-theme = system
 desktop-notifications = true

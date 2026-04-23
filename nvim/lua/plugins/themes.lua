@@ -308,22 +308,24 @@ return {
     opts = {
       update_interval = 1000,
       set_dark_mode = function()
-        vim.g.neovide_transparency = 0.98
         vim.api.nvim_set_option_value('background', 'dark', {})
         -- vim.cmd 'colorscheme terafox'
         -- vim.cmd 'colorscheme base16-valua'
         -- vim.cmd 'colorscheme kanso-zen'
         -- vim.cmd 'colorscheme neobones'
+        -- vim.cmd 'colorscheme vercel'
+        vim.cmd 'colorscheme oldworld'
         vim.defer_fn(function()
-          vim.cmd 'colorscheme vercel'
-        end, 200)
+          vim.cmd 'colorscheme oldworld'
+          -- vim.cmd 'colorscheme vercel'
+        end, 600)
       end,
       set_light_mode = function()
-        vim.g.neovide_transparency = 0.98
         vim.api.nvim_set_option_value('background', 'light', {})
+        vim.cmd 'colorscheme github_light_default'
         vim.defer_fn(function()
           vim.cmd 'colorscheme github_light_default'
-        end, 200)
+        end, 600)
         -- vim.cmd 'colorscheme dayfox'
         -- vim.cmd 'colorscheme neobones'
       end,
