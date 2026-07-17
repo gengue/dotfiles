@@ -67,6 +67,6 @@ macos-option-as-alt = true
 #window-colorspace = srgb
 window-colorspace = display-p3
 
-shell-integration-features = no-cursor, no-sudo, title
+shell-integration-features = title,no-cursor,no-sudo,ssh-env,ssh-terminfo
 
 keybind = shift+enter=text:\n
