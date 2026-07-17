@@ -8,7 +8,7 @@ return {
       -- Snippet Engine
       {
         'L3MON4D3/LuaSnip',
-        version = '2.*',
+        version = 'v2.*',
         event = 'InsertEnter',
         build = (function()
           -- Build Step is needed for regex support in snippets.
@@ -94,11 +94,9 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         per_filetype = {
-          sql = { 'snippets', 'dadbod', 'buffer' },
+          sql = { 'snippets', 'buffer' },
         },
-        providers = {
-          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
-        },
+        providers = {},
       },
 
       snippets = { preset = 'luasnip' },

@@ -79,14 +79,14 @@ return {
       sources = {
         files = {
           cmd = 'fd', -- Use fd for file finding (respects .gitignore by default)
-          hidden = false,
+          hidden = true,
           follow = false,
           -- fd respects .gitignore by default, these args ensure it
           args = { '--type', 'f', '--color', 'never' },
         },
         grep = {
           cmd = 'rg', -- Use ripgrep (respects .gitignore by default)
-          hidden = false,
+          hidden = true,
           -- rg respects .gitignore by default
           args = { '--color', 'never', '--smart-case' },
         },
@@ -94,6 +94,15 @@ return {
       formatters = {
         file = {
           filename_first = false, -- Show filepath naturally
+        },
+      },
+      win = {
+        preview = {
+          wo = {
+            cursorline = true,
+            number = true,
+            signcolumn = 'yes',
+          },
         },
       },
     },
@@ -128,14 +137,20 @@ return {
       },
     },
 
-    indent = {
-      enabled = true,
-      priority = 1, -- Run early
-    },
+    -- indent = {
+    --   enabled = true,
+    --   priority = 1, -- Run early
+    -- },
   },
   config = function(_, opts)
     local Snacks = require 'snacks'
     Snacks.setup(opts)
+
+    local function set_picker_hl()
+      vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { link = 'PmenuSel' })
+    end
+    vim.api.nvim_create_autocmd('ColorScheme', { callback = set_picker_hl })
+    set_picker_hl()
 
     -- Picker keymaps (replacing Telescope)
     vim.keymap.set('n', '<leader>sh', function()

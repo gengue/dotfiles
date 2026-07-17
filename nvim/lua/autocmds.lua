@@ -25,26 +25,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- vim.api.nvim_create_autocmd('FileType', {
---   group = augroup,
---   pattern = 'javascript,javascriptreact,typescript,typescriptreact',
---   callback = function()
---     vim.opt_local.tabstop = 2
---     vim.opt_local.softtabstop = 2
---     vim.opt_local.shiftwidth = 2
---   end,
--- })
---
--- vim.api.nvim_create_autocmd('FileType', {
---   group = augroup,
---   pattern = 'go',
---   callback = function()
---     vim.opt_local.tabstop = 4
---     vim.opt_local.softtabstop = 4
---     vim.opt_local.shiftwidth = 4
---   end,
--- })
-
 -- Auto-close terminal when process exits
 vim.api.nvim_create_autocmd('TermClose', {
   group = augroup,
@@ -72,3 +52,25 @@ vim.api.nvim_create_autocmd('VimResized', {
     vim.cmd 'tabdo wincmd ='
   end,
 })
+
+-- Force a visible visual-selection highlight regardless of colorscheme.
+-- The zenbones-family themes (tokyobones/zenbones) set a very low-contrast
+-- Visual bg and no ctermbg, which reads as "no selection" on a transparent
+-- terminal. Override it after every colorscheme switch.
+local function fix_visual_hl()
+  if vim.o.background == 'light' then
+    vim.api.nvim_set_hl(0, 'Visual', { bg = '#a8c5e0', ctermbg = 153 })
+  else
+    vim.api.nvim_set_hl(0, 'Visual', { bg = '#414868', ctermbg = 60 })
+  end
+  vim.api.nvim_set_hl(0, 'VisualNOS', { link = 'Visual' })
+end
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = augroup,
+  desc = 'Keep visual selection visible across all colorschemes',
+  callback = fix_visual_hl,
+})
+
+-- Apply once now, in case a colorscheme was already set before this loaded.
+fix_visual_hl()

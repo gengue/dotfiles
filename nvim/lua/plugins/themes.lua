@@ -8,29 +8,29 @@ local italics = {
 return {
   'MunifTanjim/nui.nvim',
   'nvim-telescope/telescope.nvim',
-  {
-    'folke/tokyonight.nvim',
-    config = function()
-      require('tokyonight').setup {
-        transparent = true,
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
-      }
-    end,
-  },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    config = function()
-      require('catppuccin').setup {
-        flavour = 'mocha',
-        transparent_background = true,
-      }
-    end,
-  },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   config = function()
+  --     require('tokyonight').setup {
+  --       transparent = true,
+  --       styles = {
+  --         sidebars = 'transparent',
+  --         floats = 'transparent',
+  --       },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   priority = 1000,
+  --   config = function()
+  --     require('catppuccin').setup {
+  --       flavour = 'mocha',
+  --       transparent_background = true,
+  --     }
+  --   end,
+  -- },
   {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
@@ -55,6 +55,7 @@ return {
   },
   {
     'tiesen243/vercel.nvim',
+    lazy = false,
     priority = 1000,
     opts = {
       transparent = true,
@@ -69,35 +70,35 @@ return {
 
       vercel.setup(opts)
 
-      local function set_vercel_visual()
-        local colors = vercel.colors
-        local utils = vercel.utils
-        local bg
-
-        if colors and utils and colors.blue and colors.background then
-          bg = utils.shade(colors.blue, 0.40, colors.background)
-        end
-
-        vim.api.nvim_set_hl(0, 'Visual', { bg = bg or '#1f4f6f' })
-        vim.api.nvim_set_hl(0, 'VisualNOS', { link = 'Visual' })
-      end
-
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        pattern = 'vercel',
-        callback = set_vercel_visual,
-      })
-
-      vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
-        callback = function()
-          if vim.g.colors_name == 'vercel' then
-            set_vercel_visual()
-          end
-        end,
-      })
-
-      if vim.g.colors_name == 'vercel' then
-        set_vercel_visual()
-      end
+      -- local function set_vercel_visual()
+      --   local colors = vercel.colors
+      --   local utils = vercel.utils
+      --   local bg
+      --
+      --   if colors and utils and colors.blue and colors.background then
+      --     bg = utils.shade(colors.blue, 0.40, colors.background)
+      --   end
+      --
+      --   vim.api.nvim_set_hl(0, 'Visual', { bg = bg or '#1f4f6f' })
+      --   vim.api.nvim_set_hl(0, 'VisualNOS', { link = 'Visual' })
+      -- end
+      --
+      -- vim.api.nvim_create_autocmd('ColorScheme', {
+      --   pattern = 'vercel',
+      --   callback = set_vercel_visual,
+      -- })
+      --
+      -- vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
+      --   callback = function()
+      --     if vim.g.colors_name == 'vercel' then
+      --       set_vercel_visual()
+      --     end
+      --   end,
+      -- })
+      --
+      -- if vim.g.colors_name == 'vercel' then
+      --   set_vercel_visual()
+      -- end
     end,
   },
   {
@@ -107,29 +108,6 @@ return {
     opts = {
       transparent = true,
     },
-  },
-  {
-    'fraeso/xcodedark.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('xcodedark').setup {
-        transparent = true,
-        integrations = {
-          telescope = true,
-          nvim_tree = true,
-          gitsigns = true,
-          bufferline = true,
-          incline = true,
-          lazygit = true,
-          which_key = true,
-          notify = true,
-          snacks = true,
-          blink = true,
-        },
-        terminal_colors = true,
-      }
-    end,
   },
   {
     'datsfilipe/vesper.nvim',
@@ -282,13 +260,6 @@ return {
   --     termguicolors = true,
   --   },
   -- },
-  -- {
-  --   'kuri-sun/yoda.nvim',
-  --   opts = {
-  --     transparent = true,
-  --     transparent_background = false,
-  --   },
-  -- },
   {
     'zenbones-theme/zenbones.nvim',
     lazy = false,
@@ -309,25 +280,13 @@ return {
       update_interval = 1000,
       set_dark_mode = function()
         vim.api.nvim_set_option_value('background', 'dark', {})
-        -- vim.cmd 'colorscheme terafox'
-        -- vim.cmd 'colorscheme base16-valua'
-        -- vim.cmd 'colorscheme kanso-zen'
-        -- vim.cmd 'colorscheme neobones'
         -- vim.cmd 'colorscheme vercel'
-        vim.cmd 'colorscheme oldworld'
-        vim.defer_fn(function()
-          vim.cmd 'colorscheme oldworld'
-          -- vim.cmd 'colorscheme vercel'
-        end, 600)
+        vim.cmd 'colorscheme tokyobones'
       end,
       set_light_mode = function()
         vim.api.nvim_set_option_value('background', 'light', {})
-        vim.cmd 'colorscheme github_light_default'
-        vim.defer_fn(function()
-          vim.cmd 'colorscheme github_light_default'
-        end, 600)
-        -- vim.cmd 'colorscheme dayfox'
-        -- vim.cmd 'colorscheme neobones'
+        -- vim.cmd 'colorscheme github_light_default'
+        vim.cmd 'colorscheme zenbones'
       end,
     },
   },
