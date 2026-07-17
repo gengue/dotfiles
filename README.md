@@ -21,7 +21,7 @@ If this this is a new machine, this is my must-have software to install:
 
 ```bash
 brew install git neovim zellij node go uv sqlite jq lazygit lazysql bat ripgrep libpng jpeg ncurses chafa graphviz graphicsmagick tree-sitter fzf ripgrep fd gh glab
-brew install --cask raycast ghostty ngrok font-fira-code-nerd-font font-hack-nerd-font font-meslo-lg-nerd-font font-ibm-plex-mono 
+brew install --cask raycast ghostty ngrok tailscale font-fira-code-nerd-font font-hack-nerd-font font-meslo-lg-nerd-font font-ibm-plex-mono 
 
 brew tap oven-sh/bun
 brew install bun
@@ -59,6 +59,25 @@ cd ~/workspace/dotfiles
 ./setup/install.sh
 ```
 
+### Arch Linux (CachyOS)
+
+```bash
+git clone https://github.com/gengue/dotfiles.git ~/workspace/dotfiles
+cd ~/workspace/dotfiles
+./setup/install-arch.sh              # prompt to install, then link the configs
+./setup/install-arch.sh -y           # install without prompting
+./setup/install-arch.sh --links-only # skip installs — just copy/link the configs
+```
+
+The package phase is **optional** — decline the prompt (or use `--links-only`)
+to just copy the configs, and anything already on your `PATH` is skipped. When
+you do install, it pulls the official-repo equivalents of the Homebrew list via
+`pacman`, builds the few AUR-only extras (`bun`, `ngrok`, `lazysql`, `tinty`,
+`pyenv`) with `makepkg` — **no AUR helper required** — sets up Oh My Zsh with the
+plugins the `zshrc` expects, and installs the AI agents. Every step is
+best-effort: a missing package warns and the run continues. Raycast/CleanShot
+have no Linux build and are skipped.
+
 Then:
 1. Edit `shell/secrets.zsh` with your API keys
 2. Create `~/.claude/mcpservers.json` if needed (see `mcpservers.example.json`)
@@ -80,7 +99,7 @@ Managed configurations:
 - **Shell** (in `shell/` folder): `.zshrc`, `.aliases`, `.functions`, `.secrets.zsh`
 - **Editors**: Neovim (`nvim/`), Zed (`zed/` - settings/keymap/snippets as individual files)
 - **Terminals**: Ghostty (`ghostty/`), Alacritty (`alacritty/`), Warp (`warp/`)
-- **Tools**: GitLab CLI (`glab-cli/`), Claude instructions (`claude/`)
+- **Tools**: GitLab CLI (`glab-cli/`), Claude instructions (`claude/`), herdr terminal workspace manager (`herdr/` - `config.toml` + `plugins/config`)
 - **Manual imports**: Raycast, Dygma keyboard settings
 
 ### Uninstallation

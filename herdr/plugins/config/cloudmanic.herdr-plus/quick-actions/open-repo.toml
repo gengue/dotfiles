@@ -1,0 +1,22 @@
+# A "select" action: choosing it shows a second fuzzy list of options, and the
+# option you pick becomes {{.Value}} in the command.
+#
+# Each option has a `label` (shown in the list) and a `value` (substituted into
+# the command). If `value` is omitted, the label is used as the value too. An
+# optional `description` shows dim text next to the label.
+
+name = "Open Repo on GitLab"
+description = "Pick one of our repos and open it"
+type = "select"
+command = "open https://gitlab.venturatravel.org/ventura-travel-it/ventura-fenix/{{.Value}}"
+
+[[options]]
+label = "VTT Monorepo"
+value = "vtt"
+description = "Ventura's apps universe"
+
+[[options]]
+label = "vMeet"
+value = "infrastructure/vmeet"
+description = "Ventura's scheduling platform"
+

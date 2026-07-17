@@ -1,0 +1,27 @@
+# Top-level project fields.
+name = "VTT monorepo"                                      # required: the workspace label
+description = "Ventura Travel monorepo"             # shown in the browser
+group = "VTT"                                       # optional: cluster a client's projects under a heading
+working_dir = "~/workspace/ventura/vtt"     # ~ and $VARS expand
+
+# Tabs open in file order. The FIRST tab reuses the workspace's root tab; the
+# rest are created behind it so the first tab stays in front.
+
+[[tabs]]
+name = "claude"                                            # required: the tab label
+command = "claude --dangerously-skip-permissions --chrome" # runs on startup
+
+[[tabs]]
+#[[tabs.panes]]
+name = "lazygit"
+command = "lazygit"
+
+[[tabs]]
+name = "terminal" 
+
+[[tabs.panes]]
+command = "pwd"
+
+[[tabs.panes]]
+command = "git status"
+split = "right"

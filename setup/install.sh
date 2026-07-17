@@ -113,6 +113,11 @@ if [ ! -d "$HOME/.claude" ]; then
 fi
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
+# herdr configuration (terminal workspace manager)
+echo -e "\n${BLUE}Setting up herdr configuration...${NC}"
+create_symlink "$DOTFILES_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+create_symlink "$DOTFILES_DIR/herdr/plugins/config" "$HOME/.config/herdr/plugins/config"
+
 # Lazygit configuration
 if [ ! -d "$HOME/Library/Application Support/lazygit" ]; then
 		mkdir -p "$HOME/Library/Application Support/lazygit"

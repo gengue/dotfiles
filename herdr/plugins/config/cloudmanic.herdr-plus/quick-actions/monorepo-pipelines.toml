@@ -1,0 +1,5 @@
+
+name = "Open Gitlab Pipelines"
+description = "Open vtt monorepo pipelines in the browser"
+type = "command"
+command = "open https://gitlab.venturatravel.org/ventura-travel-it/ventura-fenix/vtt/-/pipelines"
