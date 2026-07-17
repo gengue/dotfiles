@@ -113,8 +113,9 @@ export NVM_DIR="$HOME/.nvm"
 
 if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
-# Alisses for all patterns
+# Alisses for all patterns (skip entirely if fabric isn't installed)
 # Loop through all files in the ~/.config/fabric/patterns directory
+if [ -d "$HOME/.config/fabric/patterns" ]; then
 for pattern_file in $HOME/.config/fabric/patterns/*; do
     # Get the base name of the file (i.e., remove the directory path)
     pattern_name=$(basename "$pattern_file")
@@ -128,6 +129,7 @@ for pattern_file in $HOME/.config/fabric/patterns/*; do
     # Evaluate the alias command to add it to the current shell
     eval "$alias_command"
 done
+fi
 
 yt() {
     local video_link="$1"
