@@ -115,7 +115,7 @@ if [ "$INSTALL_PKGS" -eq 1 ]; then
     info "\nInstalling core packages (pacman)..."
     # brew formulae → official Arch packages. base-devel/git are needed for AUR builds.
     pkg_install base-devel git zsh neovim zellij nodejs npm go uv sqlite jq \
-        lazygit bat ripgrep fd fzf github-cli glab chafa graphviz graphicsmagick \
+        lazygit bat lsd mosh ripgrep fd fzf github-cli glab chafa graphviz graphicsmagick \
         tree-sitter tree-sitter-cli ncurses libpng libjpeg-turbo wget curl unzip \
         tailscale ghostty ttf-firacode-nerd ttf-hack-nerd ttf-meslo-nerd ttf-ibm-plex
 
