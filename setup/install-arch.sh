@@ -117,7 +117,7 @@ if [ "$INSTALL_PKGS" -eq 1 ]; then
     pkg_install base-devel git zsh neovim zellij nodejs npm go uv sqlite jq \
         lazygit bat lsd mosh ripgrep fd fzf github-cli glab chafa graphviz graphicsmagick \
         tree-sitter tree-sitter-cli ncurses libpng libjpeg-turbo wget curl unzip \
-        wl-clipboard tailscale ghostty ttf-firacode-nerd ttf-hack-nerd ttf-meslo-nerd ttf-ibm-plex
+        wl-clipboard xclip tailscale ghostty ttf-firacode-nerd ttf-hack-nerd ttf-meslo-nerd ttf-ibm-plex
 
     # Tailscale needs its daemon running; enable it, then `sudo tailscale up`.
     if pacman -Qq tailscale &>/dev/null; then
