@@ -86,7 +86,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 
-export CLOUDSDK_PYTHON="/usr/bin/python3"
+export CLOUDSDK_PYTHON="/Users/genesis/.pyenv/shims/python3"
+
 # Homebrew libpq; on Linux the postgresql client is already in /usr/bin
 [[ "$OSTYPE" == darwin* ]] && export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
@@ -115,3 +116,11 @@ export PATH=$HOME/.docker/bin:$PATH
 
 source <(fzf --zsh)
 export PATH="/Users/genesis/.local/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/genesis/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

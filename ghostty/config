@@ -42,7 +42,7 @@ adjust-cell-height = 20%
 # theme = dark:oldworld.conf,light:Github Light Default
 #theme = dark:vercel,light:Github Light Default
 #theme = dark:vercel,light:Zenbones_light
-theme = dark:tokyobones_dark,light:Zenbones_light
+theme = dark:tokyobones_dark,light:zenbones_light
 
 window-theme = system
 desktop-notifications = true
@@ -70,3 +70,8 @@ window-colorspace = display-p3
 shell-integration-features = title,no-cursor,no-sudo,ssh-env,ssh-terminfo
 
 keybind = shift+enter=text:\n
+
+clipboard-read = allow
+clipboard-write = allow
+
+macos-auto-secure-input = false
