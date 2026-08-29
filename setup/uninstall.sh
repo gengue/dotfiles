@@ -71,9 +71,7 @@ remove_symlink "$HOME/.config/zed/settings.json"
 remove_symlink "$HOME/.config/zed/keymap.json"
 remove_symlink "$HOME/.config/zed/snippets/javascript.json"
 
-# GitLab CLI
-echo -e "\n${BLUE}Removing GitLab CLI configuration symlink...${NC}"
-remove_symlink "$HOME/.config/glab-cli/config.yml"
+# GitLab CLI: not touched — ~/.config/glab-cli/config.yml is a real file with API tokens, not a symlink
 
 # Claude configuration
 echo -e "\n${BLUE}Removing Claude configuration symlink...${NC}"

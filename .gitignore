@@ -1,3 +1,4 @@
 .DS_Store
 secrets.zsh
 mcpservers.json
+glab-cli/config.yml

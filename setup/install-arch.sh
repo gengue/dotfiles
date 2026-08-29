@@ -214,8 +214,13 @@ create_symlink "$DOTFILES_DIR/zed/settings.json"            "$HOME/.config/zed/s
 create_symlink "$DOTFILES_DIR/zed/keymap.json"              "$HOME/.config/zed/keymap.json"
 create_symlink "$DOTFILES_DIR/zed/snippets/javascript.json" "$HOME/.config/zed/snippets/javascript.json"
 
-# GitLab CLI
-create_symlink "$DOTFILES_DIR/glab-cli/config.yml" "$HOME/.config/glab-cli/config.yml"
+# GitLab CLI — copied (not symlinked): the real config holds API tokens and must not live in the repo
+if [ ! -f "$HOME/.config/glab-cli/config.yml" ]; then
+    mkdir -p "$HOME/.config/glab-cli"
+    cp "$DOTFILES_DIR/glab-cli/config.template.yml" "$HOME/.config/glab-cli/config.yml"
+    chmod 600 "$HOME/.config/glab-cli/config.yml"
+    echo "ℹ Copied glab template — add your tokens to ~/.config/glab-cli/config.yml"
+fi
 
 # Claude
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"

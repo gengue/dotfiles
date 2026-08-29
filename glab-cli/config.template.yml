@@ -1,3 +1,5 @@
+# Template only — real config lives at ~/.config/glab-cli/config.yml (NOT symlinked,
+# it contains API tokens). install.sh copies this template there if the file is missing.
 # What protocol to use when performing Git operations. Supported values: ssh, https.
 git_protocol: ssh
 # What editor glab should run when creating issues, merge requests, etc. This global config cannot be overridden by hostname.
@@ -11,7 +13,7 @@ check_update: true
 # Whether or not to display hyperlink escape characters when listing items like issues or merge requests. Set to TRUE to display hyperlinks in TTYs only. Force hyperlinks by setting FORCE_HYPERLINKS=1 as an environment variable.
 display_hyperlinks: false
 # Default GitLab hostname to use.
-host: ssh-gitlab.venturatravel.org
+host: gitlab.venturatravel.org
 # Set to true (1) to disable prompts, or false (0) to enable them.
 no_prompt: false
 # Configuration specific for GitLab instances.
@@ -22,11 +24,13 @@ hosts:
         # Configure host for API endpoint. Defaults to the host itself.
         api_host: gitlab.com
         # Your GitLab access token. To get one, read https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
-        token:
-    ssh-gitlab.venturatravel.org:
         token: glpat-YOUR_TOKEN
+    gitlab.venturatravel.org:
+        container_registry_domains: gitlab.venturatravel.org,gitlab.venturatravel.org:443,registry.gitlab.venturatravel.org
         api_host: gitlab.venturatravel.org
-        git_protocol: ssh
+        git_protocol: https
         api_protocol: https
         user: genesis.guerrero
-last_update_check_timestamp: "2025-06-23T15:13:22+02:00"
+        client_id: YOUR_CLIENT_ID
+        ssh_host: ssh-gitlab.venturatravel.org
+        token: glpat-YOUR_TOKEN

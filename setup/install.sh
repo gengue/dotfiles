@@ -99,12 +99,14 @@ if [ ! -d "$HOME/.config/zed/snippets" ]; then
 fi
 create_symlink "$DOTFILES_DIR/zed/snippets/javascript.json" "$HOME/.config/zed/snippets/javascript.json"
 
-# GitLab CLI
+# GitLab CLI — copied (not symlinked): the real config holds API tokens and must not live in the repo
 echo -e "\n${BLUE}Setting up GitLab CLI configuration...${NC}"
-if [ ! -d "$HOME/.config/glab-cli" ]; then
+if [ ! -f "$HOME/.config/glab-cli/config.yml" ]; then
     mkdir -p "$HOME/.config/glab-cli"
+    cp "$DOTFILES_DIR/glab-cli/config.template.yml" "$HOME/.config/glab-cli/config.yml"
+    chmod 600 "$HOME/.config/glab-cli/config.yml"
+    echo -e "${YELLOW}ℹ Copied glab template — add your tokens to ~/.config/glab-cli/config.yml${NC}"
 fi
-create_symlink "$DOTFILES_DIR/glab-cli/config.yml" "$HOME/.config/glab-cli/config.yml"
 
 # Claude configuration
 echo -e "\n${BLUE}Setting up Claude configuration...${NC}"

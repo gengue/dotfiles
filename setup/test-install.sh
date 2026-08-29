@@ -118,7 +118,7 @@ create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
 create_symlink "$DOTFILES_DIR/zed/snippets/javascript.json" "$HOME/.config/zed/snippets/javascript.json"
 
 echo -e "${MAGENTA}---GitLab CLI (Individual File)---${NC}"
-create_symlink "$DOTFILES_DIR/glab-cli/config.yml" "$HOME/.config/glab-cli/config.yml"
+echo -e "${YELLOW}ℹ glab config is copied, not symlinked (holds API tokens): cp glab-cli/config.template.yml ~/.config/glab-cli/config.yml${NC}"
 
 echo -e "${MAGENTA}---Claude Configuration---${NC}"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
