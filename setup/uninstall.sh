@@ -73,10 +73,6 @@ remove_symlink "$HOME/.config/zed/snippets/javascript.json"
 
 # GitLab CLI: not touched — ~/.config/glab-cli/config.yml is a real file with API tokens, not a symlink
 
-# Claude configuration
-echo -e "\n${BLUE}Removing Claude configuration symlink...${NC}"
-remove_symlink "$HOME/.claude/CLAUDE.md"
-
 # Preserve local files
 echo -e "\n${BLUE}Preserved files:${NC}"
 if [ -f "$DOTFILES_DIR/shell/secrets.zsh" ]; then

@@ -121,7 +121,7 @@ echo -e "${MAGENTA}---GitLab CLI (Individual File)---${NC}"
 echo -e "${YELLOW}ℹ glab config is copied, not symlinked (holds API tokens): cp glab-cli/config.template.yml ~/.config/glab-cli/config.yml${NC}"
 
 echo -e "${MAGENTA}---Claude Configuration---${NC}"
-create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+echo -e "${YELLOW}ℹ agent context lives in the private gengue/skills repo: ~/workspace/skills/install.sh${NC}"
 echo -e "${YELLOW}ℹ mcpservers.json is not symlinked (user should create their own)${NC}"
 
 # Verify test results

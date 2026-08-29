@@ -108,12 +108,8 @@ if [ ! -f "$HOME/.config/glab-cli/config.yml" ]; then
     echo -e "${YELLOW}ℹ Copied glab template — add your tokens to ~/.config/glab-cli/config.yml${NC}"
 fi
 
-# Claude configuration
-echo -e "\n${BLUE}Setting up Claude configuration...${NC}"
-if [ ! -d "$HOME/.claude" ]; then
-    mkdir -p "$HOME/.claude"
-fi
-create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+# Claude/Codex/pi context now lives in the private gengue/skills repo.
+# Run: ~/workspace/skills/install.sh
 
 # herdr configuration (terminal workspace manager)
 echo -e "\n${BLUE}Setting up herdr configuration...${NC}"

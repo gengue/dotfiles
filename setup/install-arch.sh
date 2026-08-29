@@ -222,8 +222,8 @@ if [ ! -f "$HOME/.config/glab-cli/config.yml" ]; then
     echo "ℹ Copied glab template — add your tokens to ~/.config/glab-cli/config.yml"
 fi
 
-# Claude
-create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+# Claude/Codex/pi context now lives in the private gengue/skills repo.
+# Run: ~/workspace/skills/install.sh
 
 # Lazygit — Linux path is ~/.config/lazygit (vs macOS ~/Library/Application Support)
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"

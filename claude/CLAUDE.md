@@ -1,1 +1,0 @@
-- Always write code comments in English
