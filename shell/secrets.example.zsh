@@ -1,27 +1,45 @@
 # Personal API Keys
-# Uncomment and fill in your API keys
+# Copy to secrets.zsh and fill in your values (secrets.zsh is gitignored)
 
-# AI/LLM Services
-export OPENAI_API_KEY=
+# uncoment to enable your personal
+# export OPENAI_API_KEY=
 export OPENAI_API_KEY_LAZYGIT=
 export ANTHROPIC_API_KEY=
+export YOUTUBE_API_KEY=
 export DEEPSEEK_API_KEY=
 export GROQ_API_KEY=
 export REPLICATE_API_KEY=
 export TOGETHERAI_API_KEY=
 export VOYAGEAI_API_KEY=
-export GEMINI_API_KEY=
 # export GOOGLE_AI_API_KEY=
-export OPEN_ROUTER_API_KEY=
-
-# Other Services
-export YOUTUBE_API_KEY=
+export GEMINI_API_KEY=
 export BRAVE_API_KEY=
 export SUPABASE_PERSONAL_ACCESS_TOKEN=
 export ELEVENLABS_API_KEY=
+export OPEN_ROUTER_API_KEY=
+export XAI_API_KEY=
+export GROK_API_KEY=
+export CONTEXT7_API_KEY=
+export TAVILY_API_KEY=
+export TELEGRAM_BOT_TOKEN=
+export FAL_AI_API_KEY=
+export OPENCODE_ZEN_API_KEY=
+export COFR_AI_API_KEY=
+export CLOUDFLARE_API_TOKEN=
+export CLAWHUB_REGISTRY=
+export CLAWHUB_SITE=
+export SKILLHUB_API_TOKEN=
+export FIRECRAWL_API_KEY=
+export GITHUB_API_TOKEN=
+export HETZNER_INFERENCE_API_KEY=
 
 # ventura
 # uncomment to enable ventura
+export VEN_OPEN_ROUTER_API_KEY=
+export VEN_OPEN_ROUTER_ADMIN_API_KEY=
+export VEN_COHERE_API_KEY=
+export VEN_TAVILY_API_KEY=
+export BASS_API_KEY=
 # export OPENAI_API_KEY_VBOT=
 export OPENAI_API_KEY=
 export GOOGLE_AI_API_KEY_VEN=
@@ -32,6 +50,17 @@ export GEMINI_API_KEY_VEN=
 export CU_PERSONAL_ACCESS_TOKEN=
 export CLICKUP_API_KEY=
 export CLICKUP_TEAM_ID=529
+export CLICKUP_GILFOYLE_API_KEY=
+export METAMCP_API_KEY=
+export NANGO_CLICKUP_CLIENT_ID=
+export NANGO_CLICKUP_CLIENT_SECRET=
+export TURBO_TEAM=
+export TURBO_TOKEN=
+export VHELPS_OUTLINE_API_KEY=
+export PRD_TRIGGER_ACCESS_TOKEN=
+export PRD_TRIGGER_API_URL=
+export PRD_TRIGGER_PROJECT_ID=
+export PRD_TRIGGER_SECRET_KEY=
 
 export VEN_HASURA_PRD_URL=
 export VEN_HASURA_PRD_PWD=
@@ -41,3 +70,22 @@ export VEN_DB_URL_PRD=
 
 export DOPPLER_API_KEY=
 export VEN_GITLAB_PERSONAL_ACCESS_TOKEN=
+
+export VEN_N8N_API_TOKEN=
+export N8N_API_TOKEN=
+
+# custom oauth client (genesis-ai-496212) for personal use in CLI
+export VEN_GENESIS_COMPOSIO_GOOGLE_CLIENT_ID=
+export VEN_GENESIS_COMPOSIO_GOOGLE_CLIENT_SECRET=
+# desktop app for google worskpace cli
+export VEN_GENESIS_GWS_GOOGLE_CLIENT_ID=
+export VEN_GENESIS_GWS_GOOGLE_CLIENT_SECRET=
+export VEN_GENESIS_GWS_GOOGLE_CLIENT_SECRET_2=
+
+export VEN_GILFOYLE_DOPPLER_TOKEN=
+export GILFOYLE_GITLAB_CODER_ACCESS_TOKEN=
+export CODER_GILFOYLE_TOKEN=
+
+export VAPI_PRIVATE_API_KEY=
+export VAPI_PUBLIC_API_KEY=
+export COOLIFY_API_TOKEN=
