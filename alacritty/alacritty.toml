@@ -2,7 +2,8 @@
 [general]
 import = [
     # "~/.config/alacritty/themes/catppuccin.toml"
-    "~/.config/alacritty/themes/kanso_ink.toml"
+    #"~/.config/alacritty/themes/kanso_ink.toml",
+    "~/.config/alacritty/themes/noctalia.toml",
 ]
 
 [window]

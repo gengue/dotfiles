@@ -106,6 +106,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # set -o vi
 
+alias cc='~/.local/bin/claude'
+alias claude='~/.local/bin/claude'
+
 setopt completealiases
 
 export CLAUDE_CODE_NO_FLICKER=1
@@ -115,12 +118,18 @@ export PATH=$HOME/.opencode/bin:$PATH
 export PATH=$HOME/.docker/bin:$PATH
 
 source <(fzf --zsh)
-export PATH="/Users/genesis/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="/Users/genesis/Library/pnpm"
+export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# pnpm home differs per OS
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
-# pnpm end

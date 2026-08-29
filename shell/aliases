@@ -6,7 +6,6 @@ alias vimconfig="cd ~/.config/nvim/lua && nvim ~/.config/nvim/lua"
 alias nvimconfig="cd ~/.config/nvim/lua && nvim ~/.config/nvim/lua"
 
 alias ll="lsd -l"
-alias python="python3"
 alias vim=nvim
 alias v=nvim
 

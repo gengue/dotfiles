@@ -71,3 +71,27 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+if vim.env.SSH_TTY then
+  -- Use a lightweight OSC52 provider that blocks network read loops
+  vim.g.clipboard = {
+    name = 'OSC52-Ghostty',
+    copy = {
+      ['+'] = function(lines, _)
+        require('vim.ui.clipboard.osc52').copy '+'(lines)
+      end,
+      ['*'] = function(lines, _)
+        require('vim.ui.clipboard.osc52').copy '*'(lines)
+      end,
+    },
+    paste = {
+      -- Disable remote reading entirely to stop network blocking
+      ['+'] = function()
+        return vim.fn.getreg '"'
+      end,
+      ['*'] = function()
+        return vim.fn.getreg '"'
+      end,
+    },
+  }
+end
